@@ -1,0 +1,23 @@
+<h2>Schedules</h2>
+<ul class="schedules">
+  <li *ngFor="let schedule of schedules">
+    <a routerLink="/schedule-detail/{{schedule.name}}">
+      <span class="badge">{{schedule.name}}</span> {{schedule.body}}
+    </a>
+    <button class="delete" title="delete schedule"
+    (click)="delete(schedule)">x</button>
+  </li>
+</ul>
+<div>
+  <label>Schedule name:
+    <input #scheduleName />
+  </label>
+  <p>
+  <label>Schedule body:
+    <input #scheduleBody />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(scheduleName.value, scheduleBody.value); scheduleName.value=''; scheduleBody.value=''">
+    add
+  </button>
+</div>

@@ -1,0 +1,10 @@
+<div *ngIf="schedule">
+  <h2>{{ schedule.name }}</h2>
+  <div>
+    <label>body:
+      <input [(ngModel)]="schedule.body" placeholder="body"/>
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+</div>
+<button (click)="save()">save</button>
