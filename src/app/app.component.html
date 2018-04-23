@@ -1,8 +1,9 @@
-<h1>{{title}}</h1>
 <nav>
+  <span class="app-title">{{title}}</span>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/heroes">Heroes</a>
   <a routerLink="/schedules">Schedules</a>
 </nav>
+<mat-divider></mat-divider>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

@@ -1,14 +1,36 @@
-<h2>Schedules</h2>
-<ul class="schedules">
-  <li *ngFor="let schedule of schedules">
-    <a routerLink="/schedule-detail/{{schedule.name}}">
-      <span class="badge">{{schedule.name}}</span> {{schedule.body}}
-    </a>
-    <button class="delete" title="delete schedule"
-    (click)="delete(schedule)">x</button>
-  </li>
-</ul>
+<div id="actions-bar">Schedules
+<!--
+-->
+  <mat-form-field class="filter">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="schedule-container">
+  
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let schedule"><a routerLink="/schedule-detail/{{schedule.name}}"> {{schedule.name}} </a></mat-cell>
+    </ng-container>
+
+    <!-- Definition Column -->
+    <ng-container matColumnDef="body">
+      <mat-header-cell *matHeaderCellDef> Definition </mat-header-cell>
+      <mat-cell *matCellDef="let schedule"> {{schedule.body}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
 <div>
+  <p></p>
   <label>Schedule name:
     <input #scheduleName />
   </label>

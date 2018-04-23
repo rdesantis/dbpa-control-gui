@@ -1,73 +1,31 @@
 /* SchedulesComponent's private CSS styles */
-.schedules {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 30em; /*15em;*/
-  }
-  .schedules li {
-    position: relative;
-    cursor: pointer;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
-  }
-  
-  .schedules li:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
-  }
-  
-  .schedules a {
-    color: #888;
-    text-decoration: none;
-    position: relative;
-    display: block;
-    width: 250px;
-  }
-  
-  .schedules a:hover {
-    color:#607D8B;
-  }
-  
-  .schedules .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #607D8B;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    min-width: 16px;
-    text-align: right;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
-  
-  button {
-    background-color: #eee;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    cursor: hand;
-    font-family: Arial;
-  }
-  
-  button:hover {
-    background-color: #cfd8dc;
-  }
-  
-  button.delete {
-    position: relative;
-    left: 400px; /*194px;*/
-    top: -32px;
-    background-color: gray !important;
-    color: white;
-  }
+
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.filter {
+  font-size: 14px;
+  padding-left: 32px;
+}
+
+mat-form-field {
+  /* See https://github.com/angular/material2/issues/7975 */
+  margin-bottom: -1.05em;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-column-name {
+  flex: 0 0 200px;
+}
+
+.mat-column-body {
+  flex: 0 0 400px;
+}

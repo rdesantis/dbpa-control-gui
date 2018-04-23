@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.app-title, #actions-bar {
+    color: #607d8b;
+}
+
+#actions-bar {
+    font-size: 1.5em;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+}
