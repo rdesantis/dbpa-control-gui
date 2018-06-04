@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
 
 import { Schedule } from '../schedule';
 import { ScheduleService } from '../schedule.service';
@@ -12,9 +11,6 @@ import { ScheduleService } from '../schedule.service';
 export class SchedulesComponent implements OnInit {
 
   schedules: Schedule[];
-
-  dataSource: MatTableDataSource<Schedule>;
-  displayedColumns = ['name', 'body'];
 
   constructor(private scheduleService: ScheduleService) { }
 
@@ -29,7 +25,6 @@ export class SchedulesComponent implements OnInit {
           for (let property in schedules) {
             this.schedules.push({name: property, body: schedules[property]});
           }
-          this.dataSource = new MatTableDataSource(this.schedules);
         });
   }
 
@@ -49,7 +44,12 @@ export class SchedulesComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    this.scheduleService.searchSchedules(filterValue)
+        .subscribe(schedules => {
+          this.schedules = [];
+          for (let property in schedules) {
+            this.schedules.push({name: property, body: schedules[property]});
+          }
+        });
   }
 }

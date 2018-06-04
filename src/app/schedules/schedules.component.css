@@ -1,31 +1,5 @@
 /* SchedulesComponent's private CSS styles */
 
-.schedule-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-  max-width: 700px;
-}
-
-.filter {
-  font-size: 14px;
-  padding-left: 32px;
-}
-
-mat-form-field {
-  /* See https://github.com/angular/material2/issues/7975 */
-  margin-bottom: -1.05em;
-}
-
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
-}
-
-.mat-column-name {
-  flex: 0 0 200px;
-}
-
-.mat-column-body {
-  flex: 0 0 400px;
-}
+#schedules tbody.grid-content { height:250px; }
+#schedules th.name, #schedules td.name { width:180px; }
+#schedules th.body, #schedules td.body { width:320px; }

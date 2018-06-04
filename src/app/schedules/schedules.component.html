@@ -1,35 +1,28 @@
 <div id="actions-bar">Schedules
-<!--
--->
-  <mat-form-field class="filter">
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
+  <input class="actions-filter" (keyup)="applyFilter($event.target.value)" placeholder="Enter filter value">
+  <button class="actions-button"><b>+</b> Create Schedule</button>
 </div>
 
-<mat-divider></mat-divider>
+<hr />
 
-<div class="schedule-container">
-  
-  <mat-table #table [dataSource]="dataSource">
+<table class="grid" id="schedules">
+  <!--col style="width:50%"><col style="width:50%"-->
+  <thead class="grid-header">
+    <!--tr><th style="width:200px">Name</th><th style="width:240px">Definition</th></tr-->
+    <tr>
+      <th class="name">Name</th>
+      <th class="body">Definition</th>
+    </tr>
+  </thead>
+  <tbody class="grid-content">
+    <tr *ngFor="let schedule of schedules">
+      <td class="name"><a routerLink="/schedule-detail/{{schedule.name}}">{{schedule.name}}</a></td>
+      <td class="body">{{schedule.body}}</td>
+    </tr>
+  </tbody>
+</table>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let schedule"><a routerLink="/schedule-detail/{{schedule.name}}"> {{schedule.name}} </a></mat-cell>
-    </ng-container>
-
-    <!-- Definition Column -->
-    <ng-container matColumnDef="body">
-      <mat-header-cell *matHeaderCellDef> Definition </mat-header-cell>
-      <mat-cell *matCellDef="let schedule"> {{schedule.body}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div>
-
-<div>
+<!--div>
   <p></p>
   <label>Schedule name:
     <input #scheduleName />
@@ -38,8 +31,7 @@
   <label>Schedule body:
     <input #scheduleBody />
   </label>
-  <!-- (click) passes input value to add() and then clears the input -->
   <button (click)="add(scheduleName.value, scheduleBody.value); scheduleName.value=''; scheduleBody.value=''">
     add
   </button>
-</div>
+</div-->

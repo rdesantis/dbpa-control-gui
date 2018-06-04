@@ -48,13 +48,12 @@ export class ScheduleService {
 	/* GET schedules whose name contains search term */
 	searchSchedules(term: string): Observable<Object> {
 	  if (!term.trim()) {
-		// if not search term, return empty schedule map.
-		return of({});
+			term="";
 	  }
-//	  return this.http.get<Schedule[]>(`api/schedules/?like="${term}"`).pipe(
-	  return this.http.get<Object>(`${this.schedulesUrl}/?name=${term}`).pipe(
-		tap(_ => this.log(`found schedules matching "${term}"`)),
-		catchError(this.handleError<Object>('searchSchedules', {}))
+		return this.http.get<Object>(`${this.schedulesUrl}/?like=%25${term}%25`)
+		.pipe(
+			tap(_ => this.log(`found schedules matching "${term}"`)),
+			catchError(this.handleError('searchSchedules', {}))
 	  );
 	}
 

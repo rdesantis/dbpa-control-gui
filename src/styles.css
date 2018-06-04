@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-.app-title, #actions-bar {
+.app-title, #actions-bar, .actions-button {
     color: #607d8b;
 }
 
@@ -11,4 +9,53 @@
     margin-top: 0;
     padding-top: 0;
     margin-bottom: 0;
+    height: 30px;
+}
+
+.limited-width {
+    max-width: 500px;
+}
+
+hr, .actions-filter, .actions-button {
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.actions-button:hover {
+	background-color: lightcyan;
+}
+
+/* Tables */
+
+.grid {
+    border: thin solid rgba(0, 0, 0, 0.12);
+    border-collapse: collapse;
+}
+
+thead.grid-header {
+    display: block;
+}
+
+thead.grid-header th {
+    color: white;
+	background-color: #607d8b;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	border-top: 1px solid white;
+	font-weight: normal;
+	padding: 4px 3px;
+	text-align: left
+}
+
+tbody.grid-content {
+	display: block;
+	overflow: auto;
+}
+
+tbody.grid-content td, tbody.grid-content td {
+	background: #FFF;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;
+	padding: 2px 3px 3px 4px
 }

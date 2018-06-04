@@ -1,10 +1,8 @@
-<div *ngIf="schedule">
-  <h2>{{ schedule.name }}</h2>
-  <div>
-    <label>body:
-      <input [(ngModel)]="schedule.body" placeholder="body"/>
-    </label>
-  </div>
-  <button (click)="goBack()">go back</button>
-</div>
-<button (click)="save()">save</button>
+<!--div *ngIf="schedule"-->
+  <div id="actions-bar">Schedules > {{ schedule.name }}</div>
+
+  <hr />
+
+  <textarea [(ngModel)]="schedule.body" placeholder="Definition"></textarea>
+  <button (click)="save()">save</button>
+<!--/div-->
