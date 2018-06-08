@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+body {
+	font-family: Roboto, HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
 .app-title, #actions-bar, .actions-button {
     color: #607d8b;
 }
@@ -12,11 +16,15 @@
     height: 30px;
 }
 
+a.actions-link {
+    font-size: 0.7em;
+}
+
 .limited-width {
     max-width: 500px;
 }
 
-hr, .actions-filter, .actions-button {
+hr, .actions-filter, .actions-button, textarea {
     border-color: rgba(0, 0, 0, 0.12);
 }
 

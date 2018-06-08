@@ -1,0 +1,126 @@
+<div id="actions-bar">Schedules > {{ schedule.name }} > Edit
+  <button class="actions-button" (click)="save()">Save</button>
+  <button class="actions-button">Discard Changes</button>
+</div>
+
+<hr />
+
+<div>
+  <label for="name">Name</label>
+  <input id="name" [(ngModel)]="schedule.name">
+</div>
+
+<div>
+  <span id="manual-schedule">Definition</span>
+  <button (click)="clear()">Clear definition</button>
+  <div id="manual" class="schedule-mode-config">
+    <textarea id="definition" [(ngModel)]="schedule.body" placeholder="Enter schedule definition"></textarea>
+  </div>
+</div>
+
+<br />
+
+<div>
+  <button (click)="add()">Add selection to definition</button>
+  <div id="auto" class="schedule-mode-config">
+    <div id="auto-date">
+      <h3>Date</h3>
+      <div id="onetime-date">
+        <input type="radio" name="date-mode" id="onetime-date-mode" value="onetime" (change)="config.dateMode=recurrenceMode.onetime;renderConfig()">
+        <label for="onetime-date-mode">One date</label>
+        <input type="date" id="date">
+      </div>
+      <div id="recurring-date">
+        <input type="radio" name="date-mode" id="recurring-date-mode" value="recurring" checked>
+        <label for="recurring-date-mode">Every</label>
+        <input type="number" id="date-frequency" value="1">
+        <select name="date-unit">
+          <option value="days" selected>Days</option> 
+          <option value="weekday">Weekday</option>
+          <option value="weeks">Weeks</option>
+          <option value="months">Months</option>
+        </select>
+        on
+        <div id="date-recurrence">
+          <div id="days-of-week-recurrence">
+            <input type="radio" name="date-recurrence-mode" id="days-of-week-recurrence-mode" value="days-of-week" checked>
+            <label for="days-of-week-recurrence-mode">Day(s) of week</label>
+            <div id="days-of-week">
+              <input type="checkbox" id="sundays"><label for="sunday">Sunday</label>
+              <input type="checkbox" id="mondays"><label for="monday">Monday</label>
+              <input type="checkbox" id="tuesdays"><label for="tuesday">Tuesday</label>
+              <input type="checkbox" id="wednesdays"><label for="wednesday">Wednesday</label>
+              <input type="checkbox" id="thursdays"><label for="thursday">Thursday</label>
+              <input type="checkbox" id="fridays"><label for="friday">Friday</label>
+              <input type="checkbox" id="saturdays"><label for="saturday">Saturday</label>
+            </div>
+          </div>
+          <div id="ordinal-day-of-month-recurrence">
+            <input type="radio" name="date-recurrence-mode" id="ordinal-day-of-month-recurrence-mode" value="ordinal-day-of-month">
+            <label for="ordinal-day-of-month-recurrence-mode">Day #</label>
+            <input type="number" id="ordinal-day-of-month" value="1">
+          </div>
+          <div id="logical-day-of-month-recurrence">
+            <input type="radio" name="date-recurrence-mode" id="logical-day-of-month-recurrence-mode" value="logical-day-of-month">
+            <select name="logical-day-of-month">
+              <option value="first" selected>First</option> 
+              <option value="second">Second</option>
+              <option value="third">Third</option>
+              <option value="fourth">Fourth</option>
+              <option value="last">Last</option>
+            </select>
+            <select name="logical-day">
+              <option value="day" selected>Day</option> 
+              <option value="sunday">Sunday</option>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+              <option value="weekday">Weekday</option>
+            </select>
+          </div>
+          From <input type="date" id="from-date">
+          to <input type="date" id="to-date">
+        </div>
+      </div>
+      <div id="today-date" class="date-mode">
+        <input type="radio" name="date-mode" id="today-date-mode" value="today">
+        <label for="today-date-mode">Today and each day the system is started</label>
+      </div>
+    </div>
+
+    <div id="auto-time">
+      <h3>Time</h3>
+      <div id="onetime-time">
+        <input type="radio" name="time-mode" id="onetime-time-mode" value="onetime" checked>
+        <label for="onetime-time-mode">One time of day</label>
+        <input type="time" id="time" value="12:00">
+      </div>
+      <div id="recurring-time">
+        <input type="radio" name="time-mode" id="recurring-time-mode" value="recurring">
+        <label for="recurring-time-mode">Every</label>
+        <input type="number" id="time-frequency" value="1">
+        <select name="time-unit">
+          <option value="hours" selected>Hours</option> 
+          <option value="minutes">Minutes</option>
+          <option value="seconds">Seconds</option>
+        </select>
+        From <input type="time" id="from-time" value="00:00">
+        to <input type="time" id="to-time" value="23:59">
+      </div>
+      <div id="now-time">
+        <input type="radio" name="time-mode" id="now-time-mode" value="now">
+        <label for="now-time-mode">Now and each time the system is started</label>
+      </div>
+
+      <br />
+
+      <div id="selectionRenderingDiv">
+        {{ rendering }}
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+#definition {
+    width: 500px;
+    height: 5em;
+}
+
+div {
+    margin: 5px;
+}
+
+.schedule-mode {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.schedule-mode-config, #date-recurrence, #days-of-week {
+    margin-left: 10px;
+}
+
+.schedule-mode-config {
+    display: table;
+    border: solid thin teal;
+}
+
+h3 {
+    margin: 10px 0px 10px 0px;
+    color: #607d8b;
+}
+
+#selectionRenderingDiv {
+    padding: 10px;
+    text-align: center;
+    border: solid thin teal;
+}

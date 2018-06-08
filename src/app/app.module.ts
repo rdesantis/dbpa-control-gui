@@ -20,6 +20,7 @@ import { MessagesComponent }    from './messages/messages.component';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     HeroDetailComponent,
     ScheduleDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    ScheduleEditComponent
   ],
   providers: [ HeroService, ScheduleService, MessageService ],
   bootstrap: [ AppComponent ]

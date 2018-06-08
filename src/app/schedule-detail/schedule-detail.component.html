@@ -1,8 +1,16 @@
-<!--div *ngIf="schedule"-->
-  <div id="actions-bar">Schedules > {{ schedule.name }}</div>
+<div id="actions-bar">Schedules > {{ schedule.name }}
+  <a class="actions-link" routerLink="/schedule-edit/{{schedule.name}}">Edit</a>
+</div>
 
-  <hr />
+<hr />
+<div>
+  <label for="name">Name</label>
+  <input id="name" [(ngModel)]="schedule.name" readonly=true>
+</div>
 
-  <textarea [(ngModel)]="schedule.body" placeholder="Definition"></textarea>
-  <button (click)="save()">save</button>
-<!--/div-->
+<div>
+  <span id="manual-schedule">Definition</span>
+  <div id="manual" class="schedule-mode-config">
+    <textarea id="definition" [(ngModel)]="schedule.body" placeholder="Definition" readonly="true"></textarea>
+  </div>
+</div>
