@@ -26,14 +26,14 @@
     <div id="auto-date">
       <h3>Date</h3>
       <div id="onetime-date">
-        <input type="radio" name="date-mode" id="onetime-date-mode" value="onetime" (change)="config.dateMode=recurrenceMode.onetime;renderConfig()">
+        <input type="radio" name="date-mode" id="onetime-date-mode" value="onetime" (change)="changeDateMode(recurrenceMode.onetime)">
         <label for="onetime-date-mode">One date</label>
-        <input type="date" id="date">
+        <input type="date" id="date" [(ngModel)]="configDateTime.onetimeDate">
       </div>
       <div id="recurring-date">
-        <input type="radio" name="date-mode" id="recurring-date-mode" value="recurring" checked>
+        <input type="radio" name="date-mode" id="recurring-date-mode" value="recurring" (change)="changeDateMode(recurrenceMode.recurring)" checked>
         <label for="recurring-date-mode">Every</label>
-        <input type="number" id="date-frequency" value="1">
+        <input type="number" id="date-frequency" [(ngModel)]="config.dateFrequency" (change)="renderConfig()">
         <select name="date-unit">
           <option value="days" selected>Days</option> 
           <option value="weekday">Weekday</option>
@@ -43,25 +43,25 @@
         on
         <div id="date-recurrence">
           <div id="days-of-week-recurrence">
-            <input type="radio" name="date-recurrence-mode" id="days-of-week-recurrence-mode" value="days-of-week" checked>
+            <input type="radio" name="date-recurrence-mode" id="days-of-week-recurrence-mode" value="days-of-week" (change)="changeDateRecurrence(dateRecurrence.daysOfWeek)" checked>
             <label for="days-of-week-recurrence-mode">Day(s) of week</label>
             <div id="days-of-week">
-              <input type="checkbox" id="sundays"><label for="sunday">Sunday</label>
-              <input type="checkbox" id="mondays"><label for="monday">Monday</label>
-              <input type="checkbox" id="tuesdays"><label for="tuesday">Tuesday</label>
-              <input type="checkbox" id="wednesdays"><label for="wednesday">Wednesday</label>
-              <input type="checkbox" id="thursdays"><label for="thursday">Thursday</label>
-              <input type="checkbox" id="fridays"><label for="friday">Friday</label>
-              <input type="checkbox" id="saturdays"><label for="saturday">Saturday</label>
+              <input type="checkbox" id="sundays" [(ngModel)]="config.days[0]" (change)="renderConfig()"><label for="sunday">Sunday</label>
+              <input type="checkbox" id="mondays" [(ngModel)]="config.days[1]" (change)="renderConfig()"><label for="monday">Monday</label>
+              <input type="checkbox" id="tuesdays" [(ngModel)]="config.days[2]" (change)="renderConfig()"><label for="tuesday">Tuesday</label>
+              <input type="checkbox" id="wednesdays" [(ngModel)]="config.days[3]" (change)="renderConfig()"><label for="wednesday">Wednesday</label>
+              <input type="checkbox" id="thursdays" [(ngModel)]="config.days[4]" (change)="renderConfig()"><label for="thursday">Thursday</label>
+              <input type="checkbox" id="fridays" [(ngModel)]="config.days[5]" (change)="renderConfig()"><label for="friday">Friday</label>
+              <input type="checkbox" id="saturdays" [(ngModel)]="config.days[6]" (change)="renderConfig()"><label for="saturday">Saturday</label>
             </div>
           </div>
           <div id="ordinal-day-of-month-recurrence">
-            <input type="radio" name="date-recurrence-mode" id="ordinal-day-of-month-recurrence-mode" value="ordinal-day-of-month">
+            <input type="radio" name="date-recurrence-mode" id="ordinal-day-of-month-recurrence-mode" value="ordinal-day-of-month"  (change)="changeDateRecurrence(dateRecurrence.ordinalDay)">
             <label for="ordinal-day-of-month-recurrence-mode">Day #</label>
-            <input type="number" id="ordinal-day-of-month" value="1">
+            <input type="number" id="ordinal-day-of-month" [(ngModel)]="config.numericOrdinal" (change)="renderConfig()">
           </div>
           <div id="logical-day-of-month-recurrence">
-            <input type="radio" name="date-recurrence-mode" id="logical-day-of-month-recurrence-mode" value="logical-day-of-month">
+            <input type="radio" name="date-recurrence-mode" id="logical-day-of-month-recurrence-mode" value="logical-day-of-month" (change)="changeDateRecurrence(dateRecurrence.logicalDay)">
             <select name="logical-day-of-month">
               <option value="first" selected>First</option> 
               <option value="second">Second</option>
@@ -81,12 +81,12 @@
               <option value="weekday">Weekday</option>
             </select>
           </div>
-          From <input type="date" id="from-date">
-          to <input type="date" id="to-date">
+          From <input type="date" id="from-date" [(ngModel)]="configDateTime.fromDate" (change)="renderConfig()">
+          to <input type="date" id="to-date" [(ngModel)]="configDateTime.toDate" (change)="renderConfig()">
         </div>
       </div>
       <div id="today-date" class="date-mode">
-        <input type="radio" name="date-mode" id="today-date-mode" value="today">
+        <input type="radio" name="date-mode" id="today-date-mode" value="today" (change)="changeDateMode(recurrenceMode.immediate)">
         <label for="today-date-mode">Today and each day the system is started</label>
       </div>
     </div>
@@ -94,24 +94,24 @@
     <div id="auto-time">
       <h3>Time</h3>
       <div id="onetime-time">
-        <input type="radio" name="time-mode" id="onetime-time-mode" value="onetime" checked>
+        <input type="radio" name="time-mode" id="onetime-time-mode" value="onetime" (change)="changeTimeMode(recurrenceMode.onetime)" checked>
         <label for="onetime-time-mode">One time of day</label>
-        <input type="time" id="time" value="12:00">
+        <input type="time" id="time" [(ngModel)]="configDateTime.onetimeTime" (change)="renderConfig()">
       </div>
       <div id="recurring-time">
-        <input type="radio" name="time-mode" id="recurring-time-mode" value="recurring">
+        <input type="radio" name="time-mode" id="recurring-time-mode" value="recurring" (change)="changeTimeMode(recurrenceMode.recurring)">
         <label for="recurring-time-mode">Every</label>
-        <input type="number" id="time-frequency" value="1">
+        <input type="number" id="time-frequency" [(ngModel)]="config.timeFrequency" (change)="renderConfig()">
         <select name="time-unit">
           <option value="hours" selected>Hours</option> 
           <option value="minutes">Minutes</option>
           <option value="seconds">Seconds</option>
         </select>
-        From <input type="time" id="from-time" value="00:00">
-        to <input type="time" id="to-time" value="23:59">
+        From <input type="time" id="from-time" [(ngModel)]="configDateTime.fromTime" (change)="renderConfig()">
+        to <input type="time" id="to-time" [(ngModel)]="configDateTime.toTime" (change)="renderConfig()">
       </div>
       <div id="now-time">
-        <input type="radio" name="time-mode" id="now-time-mode" value="now">
+        <input type="radio" name="time-mode" id="now-time-mode" value="now" (change)="changeTimeMode(recurrenceMode.immediate)">
         <label for="now-time-mode">Now and each time the system is started</label>
       </div>
 

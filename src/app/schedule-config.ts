@@ -46,18 +46,18 @@ export class ScheduleConfig {
         this.fromDate = null;
         this.toDate = null;
         this.timeMode = RecurrenceMode.onetime;
-        this.onetimeTime = new Date();  this.onetimeTime.setHours(12, 0, 0);
-        this.timeFrequency =1;
+        this.onetimeTime = new Date(1970, 0, 1, 12, 0, 0);
+        this.timeFrequency = 1;
         this.timeUnit = TimeUnit.hour;
-        this.fromTime = new Date();  this.fromTime.setHours(0, 0, 0);
-        this.toTime = new Date();  this.toTime.setHours(11, 59, 59);
+        this.fromTime = null;
+        this.toTime = null;
     }
 
     public render(): string {
         let result: string = ``;
         switch (this.dateMode) {
             case RecurrenceMode.onetime:
-                result = `Date ${this.renderDate(this.onetimeDate)}`;
+                result = `Date '${this.renderDate(this.onetimeDate)}'`;
                 break;
             case RecurrenceMode.recurring:
                 result = `Every ${this.renderFrequency(this.dateFrequency) + this.renderDateUnit(this.dateFrequency, this.dateUnit)}`;
@@ -73,8 +73,8 @@ export class ScheduleConfig {
                     }
                 }
                 result
-                        += ((this.fromDate !== null) ? ` from ${this.renderDate(this.fromDate)}` : ``)
-                        + ((this.toDate !== null) ? ` to ${this.renderDate(this.toDate)}` : ``);
+                        += ((this.fromDate !== null) ? ` from '${this.renderDate(this.fromDate)}'` : ``)
+                        + ((this.toDate !== null) ? ` to '${this.renderDate(this.toDate)}'` : ``);
                 break;
             case RecurrenceMode.immediate:
                 result = `Today`;
@@ -83,23 +83,23 @@ export class ScheduleConfig {
         result += ` `;
         switch (this.timeMode) {
             case RecurrenceMode.onetime:
-                result += `at ${this.renderTime(this.onetimeTime)}`;
+                result += `at '${this.renderTime(this.onetimeTime)}'`;
                 break;
             case RecurrenceMode.recurring:
                 result +=
                         `every ${this.renderFrequency(this.timeFrequency) + this.renderTimeUnit(this.timeFrequency, this.timeUnit)}`
-                        + ((this.fromTime !== null) ? ` from ${this.renderTime(this.fromTime)}` : ``)
-                        + ((this.toTime !== null) ? ` to ${this.renderTime(this.toTime)}` : ``);
+                        + ((this.fromTime !== null) ? ` from '${this.renderTime(this.fromTime)}'` : ``)
+                        + ((this.toTime !== null) ? ` to '${this.renderTime(this.toTime)}'` : ``);
                 break;
             case RecurrenceMode.immediate:
-                result = `now`;
+                result += `now`;
                 break;
         }
         return result;
     }
 
     private renderDate(date: Date): string {
-        return `'${(date.getMonth() + 1).toString()}/${date.getDate().toString()}/${date.getFullYear().toString()}'`;
+        return `${(date.getMonth() + 1).toString()}/${date.getDate().toString()}/${date.getFullYear().toString()}`;
     }
 
     private renderTime(time: Date): string {
@@ -115,7 +115,7 @@ export class ScheduleConfig {
                 hours -= 12;
             }
         }
-        return `'${hours}:${("0" + minutes).substring(0, 2)} ${ampm}'`;
+        return `${hours}:${this.twoDigits(minutes)} ${ampm}`;
     }
 
     private renderFrequency(frequency: number): string {
@@ -192,5 +192,9 @@ export class ScheduleConfig {
             case LogicalDay.weekday: return `weekday`;
             default: return this.renderDayOfWeek(day);
         }
+    }
+
+    private twoDigits(value: number): string {
+        return ("0" + value.toString()).slice(-2);
     }
 }

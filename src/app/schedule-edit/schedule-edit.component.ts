@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { ScheduleService }  from '../schedule.service';
 import { Schedule } from '../schedule';
 import { RecurrenceMode, DateUnit, DateRecurrence, LogicalOrdinal, LogicalDay, TimeUnit, ScheduleConfig } from '../schedule-config';
+import { ScheduleConfigBindable } from '../schedule-config-bindable';
 
 @Component({
   selector: 'app-schedule-edit',
@@ -13,10 +14,12 @@ import { RecurrenceMode, DateUnit, DateRecurrence, LogicalOrdinal, LogicalDay, T
 })
 export class ScheduleEditComponent implements OnInit {
   @Input() schedule: Schedule;
-  @Input() config: ScheduleConfig;
-  @Input() rendering: string;
+  config: ScheduleConfig;
+  configDateTime: ScheduleConfigBindable;
+  rendering: string;
 
   public recurrenceMode = RecurrenceMode;
+  public dateRecurrence = DateRecurrence;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +30,8 @@ export class ScheduleEditComponent implements OnInit {
   ngOnInit(): void {
     this.getSchedule();
     this.config = new ScheduleConfig();
+    this.configDateTime = new ScheduleConfigBindable();
+    this.configDateTime.from(this.config);
     this.renderConfig();
   }
 
@@ -50,14 +55,33 @@ export class ScheduleEditComponent implements OnInit {
   }
 
   clear(): void {
-    this.schedule.body = "";
+    this.schedule.body = ``;
   }
 
   add(): void {
-
+    if (this.schedule.body !== ``) {
+      this.schedule.body += ",\r\n";
+    }
+    this.schedule.body += this.rendering;
   }
 
   renderConfig(): void {
+    this.configDateTime.to(this.config);
     this.rendering = this.config.render();
+  }
+
+  changeDateMode(recurrenceMode:  RecurrenceMode): void  {
+    this.config.dateMode=recurrenceMode;
+    this.renderConfig();
+  }
+
+  changeDateRecurrence(dateRecurrence:  DateRecurrence): void  {
+    this.config.dateRecurrence = dateRecurrence;
+    this.renderConfig();
+  }
+
+  changeTimeMode(recurrenceMode:  RecurrenceMode): void  {
+    this.config.timeMode=recurrenceMode;
+    this.renderConfig();
   }
 }
