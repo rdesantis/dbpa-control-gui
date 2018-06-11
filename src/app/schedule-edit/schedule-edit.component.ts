@@ -15,7 +15,7 @@ import { ScheduleConfigBindable } from '../schedule-config-bindable';
 export class ScheduleEditComponent implements OnInit {
   @Input() schedule: Schedule;
   config: ScheduleConfig;
-  configDateTime: ScheduleConfigBindable;
+  configBindable: ScheduleConfigBindable;
   rendering: string;
 
   public recurrenceMode = RecurrenceMode;
@@ -30,8 +30,8 @@ export class ScheduleEditComponent implements OnInit {
   ngOnInit(): void {
     this.getSchedule();
     this.config = new ScheduleConfig();
-    this.configDateTime = new ScheduleConfigBindable();
-    this.configDateTime.from(this.config);
+    this.configBindable = new ScheduleConfigBindable();
+    this.configBindable.from(this.config);
     this.renderConfig();
   }
 
@@ -66,21 +66,21 @@ export class ScheduleEditComponent implements OnInit {
   }
 
   renderConfig(): void {
-    this.configDateTime.to(this.config);
+    this.configBindable.to(this.config);
     this.rendering = this.config.render();
   }
 
-  changeDateMode(recurrenceMode:  RecurrenceMode): void  {
+  changeDateMode(recurrenceMode: RecurrenceMode): void  {
     this.config.dateMode=recurrenceMode;
     this.renderConfig();
   }
 
-  changeDateRecurrence(dateRecurrence:  DateRecurrence): void  {
+  changeDateRecurrence(dateRecurrence: DateRecurrence): void  {
     this.config.dateRecurrence = dateRecurrence;
     this.renderConfig();
   }
 
-  changeTimeMode(recurrenceMode:  RecurrenceMode): void  {
+  changeTimeMode(recurrenceMode: RecurrenceMode): void  {
     this.config.timeMode=recurrenceMode;
     this.renderConfig();
   }

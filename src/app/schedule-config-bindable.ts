@@ -1,4 +1,5 @@
-import { ScheduleConfig } from './schedule-config';
+import { ScheduleConfig, RecurrenceMode, DateUnit, LogicalOrdinal, LogicalDay, TimeUnit } from './schedule-config';
+import { timingSafeEqual } from 'crypto';
 
 /**
  * Many of the fields of ScheduleConfig cannot be directly bound to the values of HTML elements
@@ -7,32 +8,69 @@ import { ScheduleConfig } from './schedule-config';
  * to convert ScheduleConfigBindable from and to ScheduleConfig.
  */
 export class ScheduleConfigBindable {
+  dateMode: boolean[] = new Array<boolean>(3);
+  dateRecurrence: boolean[] = new Array<boolean>(3);
+
   onetimeDate: string;
   fromDate: string;
   toDate: string;
+
+  dateUnit: string;
+  logicalOrdinal: string;
+  logicalDay: string;
+
+  timeMode: boolean[] = new Array<boolean>(3);
 
   onetimeTime: string;
   fromTime: string;
   toTime: string;
 
+  timeUnit: string;
+
   public from(config: ScheduleConfig) {
+    this.dateMode.fill(false, 0, 3);
+    this.dateMode[config.dateMode] = true;
+
+    this.dateRecurrence.fill(false, 0, 3);
+    this.dateRecurrence[config.dateRecurrence] = true;
+
     this.onetimeDate = this.valueFromDate(config.onetimeDate);
     this.fromDate = this.valueFromDate(config.fromDate);
     this.toDate = this.valueFromDate(config.toDate);
 
+    this.dateUnit = DateUnit[config.dateUnit];
+    this.logicalOrdinal = LogicalOrdinal[config.logicalOrdinal];
+    this.logicalDay = LogicalDay[config.logicalDay];
+
+    this.timeMode.fill(false, 0, 3);
+    this.timeMode[config.timeMode] = true;
+
     this.onetimeTime = this.valueFromTime(config.onetimeTime);
     this.fromTime = this.valueFromTime(config.fromTime);
     this.toTime = this.valueFromTime(config.toTime);
+
+    this.timeUnit = TimeUnit[config.timeUnit];
   }
 
   public to(config: ScheduleConfig) {
+    // this.dateMode is a one-way binding; config.dateMode gets set directly.
+    // this.dateRecurrence is a one-way binding; config.dateRecurrence gets set directly.
+
     config.onetimeDate = this.dateFromValue(this.onetimeDate);
     config.fromDate = this.dateFromValue(this.fromDate);
     config.toDate = this.dateFromValue(this.toDate);
 
+    config.dateUnit = DateUnit[this.dateUnit];
+    config.logicalOrdinal = LogicalOrdinal[this.logicalOrdinal];
+    config.logicalDay = LogicalDay[this.logicalDay];
+
+    // this.timeMode is a one-way binding; config.timeMode gets set directly.
+
     config.onetimeTime = this.timeFromValue(this.onetimeTime);
     config.fromTime = this.timeFromValue(this.fromTime);
     config.toTime = this.timeFromValue(this.toTime);
+
+    config.timeUnit = TimeUnit[this.timeUnit];
   }
 
   private twoDigits(value: number): string {

@@ -2,7 +2,7 @@ export enum RecurrenceMode { onetime, recurring, immediate }
 export enum DateUnit { day, weekday, week, month }
 export enum DateRecurrence { daysOfWeek, ordinalDay, logicalDay }
 export enum LogicalOrdinal { first, second, third, fourth, last }
-export enum LogicalDay { day = -1, sunday, monday, tuesday, wednesday, thursday, friday, saturday, weekday }
+export enum LogicalDay { day = -1, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, weekday }
 export enum TimeUnit { hour, minute, second }
 
 export class ScheduleConfig {
@@ -123,13 +123,7 @@ export class ScheduleConfig {
     }
 
     private renderDateUnit(dateFrequency: number, dateUnit: DateUnit): string {
-        let result: string;
-        switch (dateUnit) {
-            case DateUnit.day: result = `day`; break;
-            case DateUnit.weekday: result = `weekday`; break;
-            case DateUnit.week: result = `week`; break;
-            case DateUnit.month: result = `month`; break;
-        }
+        let result: string = DateUnit[dateUnit];
         if (dateFrequency !== 1) {
             result += `s`;
         }
@@ -137,12 +131,7 @@ export class ScheduleConfig {
     }
 
     private renderTimeUnit(timeFrequency: number, timeUnit: TimeUnit): string {
-        let result: string;
-        switch (timeUnit) {
-            case TimeUnit.hour: result = `hour`; break;
-            case TimeUnit.minute: result = `minute`; break;
-            case TimeUnit.second: result = `second`; break;
-        }
+        let result: string = TimeUnit[timeUnit];
         if (timeFrequency !== 1) {
             result += `s`;
         }
@@ -162,15 +151,7 @@ export class ScheduleConfig {
     }
 
     private renderDayOfWeek(day: number): string {
-        switch (day) {
-            case 0: return `Sunday`;
-            case 1: return `Monday`;
-            case 2: return `Tuesday`;
-            case 3: return `Wednesday`;
-            case 4: return `Thursday`;
-            case 5: return `Friday`;
-            case 6: return `Saturday`;
-        }
+        return LogicalDay[day];
     }
 
     private renderLogicalOrdinal(ordinal: LogicalOrdinal): string {
@@ -186,12 +167,7 @@ export class ScheduleConfig {
     }
 
     private renderLogicalDay(day: LogicalDay): string {
-        let result: string;
-        switch (day) {
-            case LogicalDay.day: return `day`;
-            case LogicalDay.weekday: return `weekday`;
-            default: return this.renderDayOfWeek(day);
-        }
+        return LogicalDay[day];
     }
 
     private twoDigits(value: number): string {
