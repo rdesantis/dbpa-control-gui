@@ -71,7 +71,8 @@ export class ScheduleConfigBindable {
 
     config.dateFrequency = this.dateFrequency;
     config.dateUnit = DateUnit[this.dateUnit];
-    config.dateRecurrence = this.dateRecurrence.findIndex(function(x){return x});
+    let dateRecurrenceIndex = this.dateRecurrence.findIndex(function(x){return x});
+    config.dateRecurrence = (dateRecurrenceIndex !== -1) ? dateRecurrenceIndex : null;
 
     config.days = this.days;
 

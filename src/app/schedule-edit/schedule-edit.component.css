@@ -3,6 +3,11 @@
     height: 5em;
 }
 
+#validation {
+    color: red;
+    text-align: center;
+}
+
 div {
     margin: 5px;
 }

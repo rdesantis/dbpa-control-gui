@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { ScheduleService }  from '../schedule.service';
 import { Schedule } from '../schedule';
+import { ScheduleValidation } from '../schedule-validation';
 import { RecurrenceMode, DateUnit, DateRecurrence, LogicalOrdinal, LogicalDay, TimeUnit, ScheduleConfig } from '../schedule-config';
 import { ScheduleConfigBindable } from '../schedule-config-bindable';
 
@@ -14,6 +15,7 @@ import { ScheduleConfigBindable } from '../schedule-config-bindable';
 })
 export class ScheduleEditComponent implements OnInit {
   @Input() schedule: Schedule;
+  validation: ScheduleValidation;
   config: ScheduleConfig;
   configBindable: ScheduleConfigBindable;
   rendering: string;
@@ -29,6 +31,7 @@ export class ScheduleEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSchedule();
+    this.validation = {valid: true, validationMessage: ``};
     this.config = new ScheduleConfig();
     this.configBindable = new ScheduleConfigBindable();
     this.configBindable.from(this.config);
@@ -63,6 +66,16 @@ export class ScheduleEditComponent implements OnInit {
       this.schedule.body += ",\r\n";
     }
     this.schedule.body += this.rendering;
+  }
+
+  validate(): void {
+    if (this.schedule.body === "") {
+      this.validation.valid = true;
+    }
+    else {
+      this.scheduleService.validateBody(this.schedule.body)
+      .subscribe(validation => this.validation = validation);
+    }
   }
 
   renderConfig(): void {

@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { InMemoryDataService } from './in-memory-data.service';
 import { MessageService } from './message.service';
+import { ScheduleValidation } from './schedule-validation';
 
   const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -66,7 +67,7 @@ export class ScheduleService {
 	}
 
 	/** PUT: add a new schedule to the server */
-	addSchedule (name: string, body: string): Observable<any> {
+	addSchedule(name: string, body: string): Observable<any> {
       return this.http.put(`${this.schedulesUrl}/${name}`, body, httpOptions).pipe(
         tap(_ => this.log(`added schedule name=${name}`)),
         catchError(this.handleError<any>('addSchedule'))
@@ -74,20 +75,28 @@ export class ScheduleService {
     }
 
 	/** DELETE: delete the schedule from the server */
-	deleteSchedule (name: string): Observable<any> {
+	deleteSchedule(name: string): Observable<any> {
 	  return this.http.delete<string>(`${this.schedulesUrl}/${name}`, httpOptions).pipe(
 		tap(_ => this.log(`deleted schedule name=${name}`)),
 		catchError(this.handleError<string>('deleteSchedule'))
 	  );
 	}
 
-	/**
+	/** PUT:validate schedule body on server without storing it */
+	validateBody(body: string): Observable<ScheduleValidation> {
+		return this.http.put<ScheduleValidation>(`${this.schedulesUrl}/validate`, body, httpOptions).pipe(
+			tap(_ => this.log(`validation schedule body`)),
+			catchError(this.handleError<ScheduleValidation>('validateSchedule'))
+		);
+	}
+
+/**
 	 * Handle Http operation that failed.
 	 * Let the app continue.
 	 * @param operation - name of the operation that failed
 	 * @param result - optional value to return as the observable result
 	 */
-	private handleError<T> (operation = 'operation', result?: T) {
+	private handleError<T>(operation = 'operation', result?: T) {
 	  return (error: any): Observable<T> => {
 
 		// TODO: send the error to remote logging infrastructure
