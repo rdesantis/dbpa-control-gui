@@ -2,10 +2,10 @@ import { ScheduleConfig, RecurrenceMode, DateUnit, DateRecurrence, LogicalOrdina
 import { timingSafeEqual } from 'crypto';
 
 /**
- * Many of the fields of ScheduleConfig cannot be directly bound to the values of HTML elements
- * that would represent them.  For those fields, this class contains proxy fields that can
- * be bound to HTML elements.  Use the from(ScheduleConfig) and to(ScheduleConfig) methods
- * to convert ScheduleConfigBindable from and to ScheduleConfig.
+ * Most of the fields of ScheduleConfig cannot be directly bound to the values of HTML elements
+ * that would represent them.  This class contains proxy fields that can all be bound to HTML elements.
+ * Use the from(ScheduleConfig) and to(ScheduleConfig) methods to convert ScheduleConfigBindable
+ * from and to ScheduleConfig.
  */
 export class ScheduleConfigBindable {
   dateMode: boolean[] = new Array<boolean>(3);
@@ -96,6 +96,10 @@ export class ScheduleConfigBindable {
   public setDateMode(dateMode: RecurrenceMode): void {
     this.dateMode.fill(false, 0, 3);
     this.dateMode[dateMode] = true;
+  }
+
+  public setDateUnit(dateUnit: DateUnit): void {
+    this.dateUnit = DateUnit[dateUnit];
   }
 
   public setDateRecurrence(dateRecurrence: DateRecurrence): void {

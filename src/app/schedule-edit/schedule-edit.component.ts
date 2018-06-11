@@ -77,6 +77,8 @@ export class ScheduleEditComponent implements OnInit {
 
   changeDateRecurrence(dateRecurrence: DateRecurrence): void  {
     this.configBindable.setDateRecurrence(dateRecurrence);
+    this.configBindable.setDateUnit((dateRecurrence === DateRecurrence.daysOfWeek) ? DateUnit.week : DateUnit.month);
+    this.configBindable.setDateMode(RecurrenceMode.recurring);
     this.renderConfig();
   }
 
