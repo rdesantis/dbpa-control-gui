@@ -71,17 +71,17 @@ export class ScheduleEditComponent implements OnInit {
   }
 
   changeDateMode(recurrenceMode: RecurrenceMode): void  {
-    this.config.dateMode=recurrenceMode;
+    this.configBindable.setDateMode(recurrenceMode);
     this.renderConfig();
   }
 
   changeDateRecurrence(dateRecurrence: DateRecurrence): void  {
-    this.config.dateRecurrence = dateRecurrence;
+    this.configBindable.setDateRecurrence(dateRecurrence);
     this.renderConfig();
   }
 
   changeTimeMode(recurrenceMode: RecurrenceMode): void  {
-    this.config.timeMode=recurrenceMode;
+    this.configBindable.setTimeMode(recurrenceMode);
     this.renderConfig();
   }
 }

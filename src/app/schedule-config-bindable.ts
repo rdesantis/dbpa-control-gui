@@ -1,4 +1,4 @@
-import { ScheduleConfig, RecurrenceMode, DateUnit, LogicalOrdinal, LogicalDay, TimeUnit } from './schedule-config';
+import { ScheduleConfig, RecurrenceMode, DateUnit, DateRecurrence, LogicalOrdinal, LogicalDay, TimeUnit } from './schedule-config';
 import { timingSafeEqual } from 'crypto';
 
 /**
@@ -9,68 +9,103 @@ import { timingSafeEqual } from 'crypto';
  */
 export class ScheduleConfigBindable {
   dateMode: boolean[] = new Array<boolean>(3);
-  dateRecurrence: boolean[] = new Array<boolean>(3);
 
   onetimeDate: string;
-  fromDate: string;
-  toDate: string;
 
+  dateFrequency: number;
   dateUnit: string;
+  dateRecurrence: boolean[] = new Array<boolean>(3);
+
+  days: boolean[];
+
+  numericOrdinal: number;
+
   logicalOrdinal: string;
   logicalDay: string;
+
+  fromDate: string;
+  toDate: string;
 
   timeMode: boolean[] = new Array<boolean>(3);
 
   onetimeTime: string;
+
+  timeFrequency: number;
+  timeUnit: string;
   fromTime: string;
   toTime: string;
 
-  timeUnit: string;
-
   public from(config: ScheduleConfig) {
-    this.dateMode.fill(false, 0, 3);
-    this.dateMode[config.dateMode] = true;
-
-    this.dateRecurrence.fill(false, 0, 3);
-    this.dateRecurrence[config.dateRecurrence] = true;
+    this.setDateMode(config.dateMode);
 
     this.onetimeDate = this.valueFromDate(config.onetimeDate);
-    this.fromDate = this.valueFromDate(config.fromDate);
-    this.toDate = this.valueFromDate(config.toDate);
 
+    this.dateFrequency = config.dateFrequency;
     this.dateUnit = DateUnit[config.dateUnit];
+    this.setDateRecurrence(config.dateRecurrence);
+
+    this.days = config.days;
+
+    this.numericOrdinal = config.numericOrdinal;
+
     this.logicalOrdinal = LogicalOrdinal[config.logicalOrdinal];
     this.logicalDay = LogicalDay[config.logicalDay];
 
-    this.timeMode.fill(false, 0, 3);
-    this.timeMode[config.timeMode] = true;
+    this.fromDate = this.valueFromDate(config.fromDate);
+    this.toDate = this.valueFromDate(config.toDate);
+
+    this.setTimeMode(config.timeMode);
 
     this.onetimeTime = this.valueFromTime(config.onetimeTime);
+
+    this.timeFrequency = config.timeFrequency;
+    this.timeUnit = TimeUnit[config.timeUnit];
     this.fromTime = this.valueFromTime(config.fromTime);
     this.toTime = this.valueFromTime(config.toTime);
-
-    this.timeUnit = TimeUnit[config.timeUnit];
   }
 
   public to(config: ScheduleConfig) {
-    // this.dateMode is a one-way binding; config.dateMode gets set directly.
-    // this.dateRecurrence is a one-way binding; config.dateRecurrence gets set directly.
+    config.dateMode = this.dateMode.findIndex(function(x){return x});
 
     config.onetimeDate = this.dateFromValue(this.onetimeDate);
-    config.fromDate = this.dateFromValue(this.fromDate);
-    config.toDate = this.dateFromValue(this.toDate);
 
+    config.dateFrequency = this.dateFrequency;
     config.dateUnit = DateUnit[this.dateUnit];
+    config.dateRecurrence = this.dateRecurrence.findIndex(function(x){return x});
+
+    config.days = this.days;
+
+    config.numericOrdinal = this.numericOrdinal;
+
     config.logicalOrdinal = LogicalOrdinal[this.logicalOrdinal];
     config.logicalDay = LogicalDay[this.logicalDay];
 
-    // this.timeMode is a one-way binding; config.timeMode gets set directly.
+    config.fromDate = this.dateFromValue(this.fromDate);
+    config.toDate = this.dateFromValue(this.toDate);
+
+    config.timeMode = this.timeMode.findIndex(function(x){return x});
 
     config.onetimeTime = this.timeFromValue(this.onetimeTime);
+
+    config.timeFrequency = this.timeFrequency;
+    config.timeUnit = TimeUnit[this.timeUnit];
     config.fromTime = this.timeFromValue(this.fromTime);
     config.toTime = this.timeFromValue(this.toTime);
+  }
 
-    config.timeUnit = TimeUnit[this.timeUnit];
+  public setDateMode(dateMode: RecurrenceMode): void {
+    this.dateMode.fill(false, 0, 3);
+    this.dateMode[dateMode] = true;
+  }
+
+  public setDateRecurrence(dateRecurrence: DateRecurrence): void {
+    this.dateRecurrence.fill(false, 0, 3);
+    this.dateRecurrence[dateRecurrence] = true;
+  }
+
+  public setTimeMode(timeMode: RecurrenceMode): void {
+    this.timeMode.fill(false, 0, 3);
+    this.timeMode[timeMode] = true;
   }
 
   private twoDigits(value: number): string {
