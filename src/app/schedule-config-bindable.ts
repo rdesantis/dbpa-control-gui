@@ -1,5 +1,4 @@
 import { ScheduleConfig, RecurrenceMode, DateUnit, DateRecurrence, LogicalOrdinal, LogicalDay, TimeUnit } from './schedule-config';
-import { timingSafeEqual } from 'crypto';
 
 /**
  * Most of the fields of ScheduleConfig cannot be directly bound to the values of HTML elements
