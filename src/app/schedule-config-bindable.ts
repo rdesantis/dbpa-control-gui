@@ -104,7 +104,9 @@ export class ScheduleConfigBindable {
 
   public setDateRecurrence(dateRecurrence: DateRecurrence): void {
     this.dateRecurrence.fill(false, 0, 3);
-    this.dateRecurrence[dateRecurrence] = true;
+    if (dateRecurrence !== null) {
+      this.dateRecurrence[dateRecurrence] = true;
+    }
   }
 
   public setTimeMode(timeMode: RecurrenceMode): void {

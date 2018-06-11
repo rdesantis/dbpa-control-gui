@@ -34,7 +34,7 @@
         <input type="radio" name="date-mode" id="recurring-date-mode" [checked]="configBindable.dateMode[recurrenceMode.recurring]" (change)="changeDateMode(recurrenceMode.recurring)">
         <label for="recurring-date-mode">Every</label>
         <input type="number" id="date-frequency" [(ngModel)]="configBindable.dateFrequency" (change)="changeDateMode(recurrenceMode.recurring)">
-        <select name="date-unit" [(ngModel)]="configBindable.dateUnit" (change)="changeDateMode(recurrenceMode.recurring)">
+        <select name="date-unit" [(ngModel)]="configBindable.dateUnit" (change)="changeDateUnit()">
           <option value="day">Days</option> 
           <option value="weekday">Weekday</option>
           <option value="week">Weeks</option>
