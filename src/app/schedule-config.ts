@@ -74,7 +74,7 @@ export class ScheduleConfig {
                 }
                 result
                         += ((this.fromDate !== null) ? ` from '${this.renderDate(this.fromDate)}'` : ``)
-                        + ((this.toDate !== null) ? ` to '${this.renderDate(this.toDate)}'` : ``);
+                        + ((this.toDate !== null) ? ` until '${this.renderDate(this.toDate)}'` : ``);
                 break;
             case RecurrenceMode.immediate:
                 result = `Today`;
@@ -89,7 +89,7 @@ export class ScheduleConfig {
                 result +=
                         `every ${this.renderFrequency(this.timeFrequency) + this.renderTimeUnit(this.timeFrequency, this.timeUnit)}`
                         + ((this.fromTime !== null) ? ` from '${this.renderTime(this.fromTime)}'` : ``)
-                        + ((this.toTime !== null) ? ` to '${this.renderTime(this.toTime)}'` : ``);
+                        + ((this.toTime !== null) ? ` until '${this.renderTime(this.toTime)}'` : ``);
                 break;
             case RecurrenceMode.immediate:
                 result += `now`;

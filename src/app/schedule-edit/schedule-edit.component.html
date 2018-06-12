@@ -85,8 +85,8 @@
               <option value="weekday">Weekday</option>
             </select>
           </div>
-          From <input type="date" id="from-date" [(ngModel)]="configBindable.fromDate" (change)="changeDateMode(recurrenceMode.recurring)">
-          to <input type="date" id="to-date" [(ngModel)]="configBindable.toDate" (change)="changeDateMode(recurrenceMode.recurring)">
+          from <input type="date" id="from-date" [(ngModel)]="configBindable.fromDate" (change)="changeDateMode(recurrenceMode.recurring)">
+          until <input type="date" id="to-date" [(ngModel)]="configBindable.toDate" (change)="changeDateMode(recurrenceMode.recurring)">
         </div>
       </div>
       <div id="today-date" class="date-mode">
@@ -111,8 +111,8 @@
           <option value="minute">Minutes</option>
           <option value="second">Seconds</option>
         </select>
-        From <input type="time" id="from-time" [(ngModel)]="configBindable.fromTime" (change)="changeTimeMode(recurrenceMode.recurring)">
-        to <input type="time" id="to-time" [(ngModel)]="configBindable.toTime" (change)="changeTimeMode(recurrenceMode.recurring)">
+        from <input type="time" id="from-time" [(ngModel)]="configBindable.fromTime" (change)="changeTimeMode(recurrenceMode.recurring)">
+        until <input type="time" id="to-time" [(ngModel)]="configBindable.toTime" (change)="changeTimeMode(recurrenceMode.recurring)">
       </div>
       <div id="now-time">
         <input type="radio" name="time-mode" id="now-time-mode" [checked]="configBindable.timeMode[recurrenceMode.immediate]" (change)="changeTimeMode(recurrenceMode.immediate)">
