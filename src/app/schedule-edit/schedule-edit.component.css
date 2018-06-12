@@ -1,3 +1,13 @@
+div {
+    margin: 5px;
+}
+
+.schedule-mode-config {
+    display: block;
+    max-width: 660px;
+    border: solid thin teal;
+}
+
 #manual {
     display: block;
     max-width: 650px;
@@ -17,8 +27,9 @@
     color: red;
 }
 
-div {
-    margin: 5px;
+h3 {
+    margin: 10px 0px 10px 0px;
+    color: #607d8b;
 }
 
 .schedule-mode {
@@ -28,17 +39,6 @@ div {
 
 .schedule-mode-config, #date-recurrence, #days-of-week {
     margin-left: 10px;
-}
-
-.schedule-mode-config {
-    display: block;
-    max-width: 660px;
-    border: solid thin teal;
-}
-
-h3 {
-    margin: 10px 0px 10px 0px;
-    color: #607d8b;
 }
 
 #selection-rendering {
