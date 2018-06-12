@@ -1,11 +1,20 @@
+#manual {
+    display: block;
+    max-width: 650px;
+    padding: 5px;
+}
+
 #definition {
-    width: 500px;
+    border: none;
+    width: 100%;
     height: 5em;
 }
 
 #validation {
-    color: red;
+    padding: 10px;
     text-align: center;
+    border: solid thin teal;
+    color: red;
 }
 
 div {
@@ -22,7 +31,8 @@ div {
 }
 
 .schedule-mode-config {
-    display: table;
+    display: block;
+    max-width: 660px;
     border: solid thin teal;
 }
 
@@ -31,7 +41,7 @@ h3 {
     color: #607d8b;
 }
 
-#selectionRenderingDiv {
+#selection-rendering {
     padding: 10px;
     text-align: center;
     border: solid thin teal;
