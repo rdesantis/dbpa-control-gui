@@ -57,8 +57,14 @@ export class ScheduleEditComponent implements OnInit {
     this.location.back();
   }
 
+  reset(): void {
+    this.clear();
+    this.getSchedule();
+  }
+
   clear(): void {
     this.schedule.body = ``;
+    this.validate();
   }
 
   add(): void {
@@ -66,6 +72,7 @@ export class ScheduleEditComponent implements OnInit {
       this.schedule.body += ",\r\n";
     }
     this.schedule.body += this.rendering;
+    this.validate();
   }
 
   validate(): void {
