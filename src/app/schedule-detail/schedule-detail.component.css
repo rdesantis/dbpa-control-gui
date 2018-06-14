@@ -1,4 +1,22 @@
+/* Duplicated from schedule-edit.component.css */
+
+.schedule-mode-config {
+    display: block;
+    max-width: 660px;
+    border: solid thin rgba(0, 0, 0, 0.12);
+    background-color: white;
+    box-shadow: 0 5px 3px -3px #888;
+    margin-left: 10px;
+}
+
+#manual {
+    display: block;
+    max-width: 650px;
+    padding: 5px;
+}
+
 #definition {
-    width: 500px;
-    height: 250px;
+    border: none;
+    width: 100%;
+    height: 5em;
 }

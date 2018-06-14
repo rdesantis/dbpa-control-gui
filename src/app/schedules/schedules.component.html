@@ -6,33 +6,21 @@
 
 <hr />
 
-<table class="grid" id="schedules">
-  <!--col style="width:50%"><col style="width:50%"-->
-  <thead class="grid-header">
-    <!--tr><th style="width:200px">Name</th><th style="width:240px">Definition</th></tr-->
-    <tr>
-      <th class="name">Name</th>
-      <th class="body">Definition</th>
-    </tr>
-  </thead>
-  <tbody class="grid-content">
-    <tr *ngFor="let schedule of schedules">
-      <td class="name"><a routerLink="/schedule-detail/{{schedule.name}}">{{schedule.name}}</a></td>
-      <td class="body">{{schedule.body}}</td>
-    </tr>
-  </tbody>
-</table>
-
-<!--div>
-  <p></p>
-  <label>Schedule name:
-    <input #scheduleName />
-  </label>
-  <p>
-  <label>Schedule body:
-    <input #scheduleBody />
-  </label>
-  <button (click)="add(scheduleName.value, scheduleBody.value); scheduleName.value=''; scheduleBody.value=''">
-    add
-  </button>
-</div-->
+<div id="work-area">
+  <table class="grid" id="schedules" class="margined">
+    <!--col style="width:50%"><col style="width:50%"-->
+    <thead class="grid-header">
+      <!--tr><th style="width:200px">Name</th><th style="width:240px">Definition</th></tr-->
+      <tr>
+        <th class="name">Name</th>
+        <th class="body">Definition</th>
+      </tr>
+    </thead>
+    <tbody class="grid-content">
+      <tr *ngFor="let schedule of schedules">
+        <td class="name"><a routerLink="/schedule-detail/{{schedule.name}}">{{schedule.name}}</a></td>
+        <td class="body">{{schedule.body}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

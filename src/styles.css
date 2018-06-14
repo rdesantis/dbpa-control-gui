@@ -2,14 +2,17 @@
 
 body {
 	font-family: Roboto, HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	margin: 0px;
 }
 
-.app-title, #actions-bar, .actions-button {
-    color: #607d8b;
+/*.app-title, #actions-bar, .actions-button {*/
+.app-title, #actions-bar, button {
+		color: #607d8b;
 }
 
 #actions-bar {
-    font-size: 1.5em;
+	font-size: 1.3em;
+	margin-left: 5px;
     margin-top: 0;
     padding-top: 0;
     margin-bottom: 0;
@@ -24,12 +27,31 @@ a.actions-link {
     max-width: 500px;
 }
 
-hr, .actions-filter, .actions-button, textarea {
+hr, .actions-filter, .actions-button, textarea, input, select, button {
     border-color: rgba(0, 0, 0, 0.12);
 }
 
-.actions-button:hover {
-	background-color: lightcyan;
+button {
+	border-radius: 4px;
+}
+
+/*.actions-button:hover {*/
+button:hover {
+		background-color: lightcyan;
+}
+
+/*hr {
+	margin: 5px;
+}*/
+
+#work-area {
+	background-color: #f0F5F5;
+	height: 100vh;
+	padding: 5px;
+}
+
+div.margined {
+    margin: 5px;
 }
 
 /* Tables */

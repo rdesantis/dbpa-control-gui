@@ -1,11 +1,12 @@
-div {
-    margin: 5px;
-}
+/*Copied to schedule-detail.component.css */
 
 .schedule-mode-config {
     display: block;
     max-width: 660px;
-    border: solid thin teal;
+    border: solid thin rgba(0, 0, 0, 0.12);
+    background-color: white;
+    box-shadow: 0 5px 3px -3px #888;
+    margin-left: 10px;
 }
 
 #manual {
@@ -23,8 +24,8 @@ div {
 #validation {
     padding: 10px;
     text-align: center;
-    border: solid thin teal;
-    color: red;
+    border: solid thin rgba(0, 0, 0, 0.12);
+    color: Salmon;
 }
 
 h3 {
@@ -37,12 +38,12 @@ h3 {
     margin-bottom: 10px;
 }
 
-.schedule-mode-config, #date-recurrence, #days-of-week {
+#date-recurrence, #days-of-week {
     margin-left: 10px;
 }
 
 #selection-rendering {
     padding: 10px;
     text-align: center;
-    border: solid thin teal;
+    border: solid thin rgba(0, 0, 0, 0.12);
 }
