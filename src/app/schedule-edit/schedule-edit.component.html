@@ -1,6 +1,6 @@
 <div id="actions-bar">
   <a class="actions-breadcrumb" routerLink="/schedules">Schedules</a> >
-  <a class="actions-breadcrumb" routerLink="/schedule-detail/{{schedule.name}}">{{schedule.name}}</a> > Edit
+  <a class="actions-breadcrumb" routerLink="/schedule-detail/{{schedule.name}}" *ngIf="editNotCreate">{{schedule.name}}</a> {{editNotCreate?' > Edit':' Create'}}
   <button class="actions-button" (click)="save()">Save</button>
   <button class="actions-button" (click)="reset()">Discard Changes</button>
 </div>
