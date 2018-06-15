@@ -1,13 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+/* General styles */
 
 body {
 	font-family: Roboto, HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	margin: 0px;
 }
 
-/*.app-title, #actions-bar, .actions-button {*/
-.app-title, #actions-bar, button {
-		color: #607d8b;
+button, div, input, select, textarea, a.actions-link {
+	box-sizing: border-box;
+}
+
+a:visited {
+	color: gray;
+}
+
+input[type=text], input[type=number], input[type=date], input[type=time], select {
+	box-shadow: 0 2px 2px -1px #888;
+	height: 20px;
+}
+
+input[type=number] {
+	width: 5em;
+}
+
+div.margined {
+    margin: 5px;
+}
+
+hr, textarea, input, select, button, a.actions-link {
+	border-color: rgba(0, 0, 0, 0.12);
+	border-width: 1px;
+}
+
+button, a.actions-link {
+	border-radius: 4px;
+}
+
+button:hover, a.actions-link:hover  {
+	background-color: lightcyan;
+}
+
+/* Specific areas of the page */
+
+.app-title, #actions-bar, button, a.actions-link, a.actions-link:visited, .actions-breadcrumb, .actions-breadcrumb:visited, a {
+	color: #607d8b;
 }
 
 #actions-bar {
@@ -19,39 +54,38 @@ body {
     height: 30px;
 }
 
+.actions-breadcrumb {
+	text-decoration: none;
+}
+
+.actions-breadcrumb:hover {
+	text-decoration: underline;
+}
+
 a.actions-link {
-    font-size: 0.7em;
+	/* Make it look and behave like a button */
+	text-decoration: none;
+	font-size: 0.6em;
+	border-style: solid;
+	background-color: #eee;
+	padding: 3px 5px;
 }
 
 .limited-width {
     max-width: 500px;
 }
 
-hr, .actions-filter, .actions-button, textarea, input, select, button {
-    border-color: rgba(0, 0, 0, 0.12);
-}
-
-button {
-	border-radius: 4px;
-}
-
-/*.actions-button:hover {*/
-button:hover {
-		background-color: lightcyan;
-}
-
-/*hr {
-	margin: 5px;
-}*/
-
 #work-area {
-	background-color: #f0F5F5;
+	background-color: #F3F3F3;
 	height: 100vh;
 	padding: 5px;
 }
 
-div.margined {
-    margin: 5px;
+.panel {
+    display: block;
+	background-color: #FDFDFD;
+    border: solid thin rgba(0, 0, 0, 0.12);
+	box-shadow: 0 5px 3px -3px #888;
 }
 
 /* Tables */
@@ -81,7 +115,7 @@ tbody.grid-content {
 	overflow: auto;
 }
 
-tbody.grid-content td, tbody.grid-content td {
+tbody.grid-content td {
 	background: #FFF;
 	border-bottom: none;
 	border-left: none;

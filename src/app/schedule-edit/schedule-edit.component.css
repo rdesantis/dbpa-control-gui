@@ -1,17 +1,13 @@
 /*Copied to schedule-detail.component.css */
 
 .schedule-mode-config {
-    display: block;
-    max-width: 660px;
-    border: solid thin rgba(0, 0, 0, 0.12);
-    background-color: white;
-    box-shadow: 0 5px 3px -3px #888;
+    max-width: 670px;
     margin-left: 10px;
 }
 
 #manual {
     display: block;
-    max-width: 650px;
+    max-width: 670px;
     padding: 5px;
 }
 
@@ -25,7 +21,8 @@
     padding: 10px;
     text-align: center;
     border: solid thin rgba(0, 0, 0, 0.12);
-    color: Salmon;
+    color: rgb(255, 100, 100);
+    background-color: white;
 }
 
 h3 {
@@ -46,4 +43,5 @@ h3 {
     padding: 10px;
     text-align: center;
     border: solid thin rgba(0, 0, 0, 0.12);
+    background-color: white;
 }
