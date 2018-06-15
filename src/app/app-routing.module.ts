@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'schedule-detail/:name', component: ScheduleDetailComponent },
+  { path: 'schedule-edit', component: ScheduleEditComponent },
   { path: 'schedule-edit/:name', component: ScheduleEditComponent },
   { path: 'schedules', component: SchedulesComponent }
 ];

@@ -15,6 +15,7 @@ import { ScheduleConfigBindable } from '../schedule-config-bindable';
 })
 export class ScheduleEditComponent implements OnInit {
   @Input() schedule: Schedule;
+  editNotCreate: boolean;
   validation: ScheduleValidation;
   config: ScheduleConfig;
   configBindable: ScheduleConfigBindable;
@@ -30,6 +31,8 @@ export class ScheduleEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.editNotCreate = (this.route.snapshot.paramMap.get('name') !== null);
+
     this.getSchedule();
     this.validation = {valid: true, validationMessage: ``};
     this.config = new ScheduleConfig();
@@ -39,19 +42,29 @@ export class ScheduleEditComponent implements OnInit {
   }
 
   getSchedule(): void {
-    const name = this.route.snapshot.paramMap.get('name');
     this.schedule = new Schedule();
-    this.schedule.name = name;
-    this.scheduleService.getSchedule(name)
-      .subscribe(body => this.schedule.body = body);
+    if (this.editNotCreate) {
+      const name = this.route.snapshot.paramMap.get('name');
+      this.schedule.name = name;
+      this.scheduleService.getSchedule(name)
+        .subscribe(body => this.schedule.body = body);
+    }
+    else {
+      this.schedule.name = "";
+      this.schedule.body = "";
+    }
   }
 
 	save(): void {
-	   this.scheduleService.updateSchedule(this.schedule.name, this.schedule.body)
-		 .subscribe(() => this.goBack());
-//		 .subscribe(() => {});	// Works; saves and does not go back
-//		 .subscribe();			// Also works; saves and does not go back
-	 }
+    if (this.editNotCreate) {
+      this.scheduleService.updateSchedule(this.schedule.name, this.schedule.body)
+        .subscribe(() => this.goBack());
+    }
+    else {
+      this.scheduleService.addSchedule(this.schedule.name, this.schedule.body)
+        .subscribe(() => this.goBack());
+    }
+  }
 
   goBack(): void {
     this.location.back();
