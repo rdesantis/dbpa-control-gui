@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { InMemoryDataService } from './in-memory-data.service';
 import { MessageService } from './message.service';
+import { DbpaService } from './dbpa-service';
 import { ScheduleValidation } from './schedule-validation';
 
   const httpOptions = {
@@ -14,13 +15,13 @@ import { ScheduleValidation } from './schedule-validation';
   };
 
 @Injectable()
-export class ScheduleService {
+export class ScheduleService extends DbpaService {
 
-  private schedulesUrl = 'http://localhost:8080/schedules';  // URL to web api
+  private schedulesUrl: string = DbpaService.managerUrl + 'schedules';
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService) { super(); }
   
   /** Log a ScheduleService message with the MessageService */
   private log(message: string) {
