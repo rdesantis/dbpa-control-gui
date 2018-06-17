@@ -24,8 +24,8 @@ export class ScheduleService extends DbpaService {
     private messageService: MessageService) { super(); }
   
   /** Log a ScheduleService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add('ScheduleService: ' + message);
+  private log(message: string, isError: boolean = false) {
+    this.messageService.add('ScheduleService: ' + message, isError);
   }
 
     /** GET schedules from the server */
@@ -104,7 +104,7 @@ export class ScheduleService extends DbpaService {
 		console.error(error); // log to console instead
 
 		// TODO: better job of transforming error for user consumption
-		this.log(`${operation} failed: ${error.message}`);
+		this.log(`${operation} failed: ${error.message}`, true);
 
 		// Let the app keep running by returning an empty result.
 		return of(result as T);

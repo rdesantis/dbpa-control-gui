@@ -1,8 +1,6 @@
-<div *ngIf="messageService.messages.length">
+<div *ngIf="messageService.isAnyError" class="panel" id="error-panel">
 
-  <h2>Messages</h2>
-  <button class="clear"
-          (click)="messageService.clear()">clear</button>
-  <div *ngFor='let message of messageService.messages'> {{message}} </div>
+  <button class="clear" (click)="messageService.clear()" id="clear-button">x</button>
+  <div *ngFor='let message of messageService.messages' id="messages"> {{message}} </div>
 
 </div>
