@@ -12,6 +12,7 @@ import { Schedule } from '../schedule';
 })
 export class ScheduleDetailComponent implements OnInit {
   @Input() schedule: Schedule;
+  isRenaming: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,4 +43,24 @@ export class ScheduleDetailComponent implements OnInit {
     this.location.back();
   }
 
+  delete(): void {
+    this.scheduleService.deleteSchedule(this.schedule.name)
+    .subscribe(() => this.goBack());
+ }
+
+  startRename(): void {
+    this.isRenaming = true;
+    document.getElementById("name").focus();
+    // The element has the focus but on Edge it is not visually obvious until you strt typing; on Chrome it is.
+  }
+
+  saveRename(): void {
+    this.isRenaming = false;
+    // TODO: save it
+  }
+
+  cancelRename(): void {
+    this.isRenaming = false;
+    this.schedule.name = this.route.snapshot.paramMap.get('name');
+  }
 }
