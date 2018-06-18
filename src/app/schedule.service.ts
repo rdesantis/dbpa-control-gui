@@ -86,9 +86,16 @@ export class ScheduleService extends DbpaService {
 	/** PUT:validate schedule body on server without storing it */
 	validateBody(body: string): Observable<ScheduleValidation> {
 		return this.http.put<ScheduleValidation>(`${this.schedulesUrl}/validate`, body, httpOptions).pipe(
-			tap(_ => this.log(`validation schedule body`)),
+			tap(_ => this.log(`validated schedule body`)),
 			catchError(this.handleError<ScheduleValidation>('validateSchedule'))
 		);
+	}
+
+	rename(name: string, newName: string): Observable<any> {
+	  return this.http.put(`${this.schedulesUrl}/${name}/rename`, newName, httpOptions).pipe(
+		tap(_ => this.log(`updated schedule name=${name} to newName=${newName}`)),
+		catchError(this.handleError<any>('rename'))
+	  );
 	}
 
 /**

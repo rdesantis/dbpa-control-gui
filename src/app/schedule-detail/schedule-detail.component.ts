@@ -56,8 +56,10 @@ export class ScheduleDetailComponent implements OnInit {
 
   saveRename(): void {
     this.isRenaming = false;
-    // TODO: save it
-  }
+    const name = this.route.snapshot.paramMap.get('name');
+    this.scheduleService.rename(name, this.schedule.name)
+    .subscribe(() => this.goBack());
+ }
 
   cancelRename(): void {
     this.isRenaming = false;
