@@ -69,10 +69,13 @@ button:hover, a.actions-link:hover  {
 	text-decoration: underline;
 }
 
-.actions-button, a.actions-link {
-	background-color: #eee;
+.actions-filter, .actions-button, a.actions-link {
 	position: relative;
 	top: -3px;
+}
+
+.actions-button, a.actions-link {
+	background-color: #eee;
 }
 
 a.actions-link {
