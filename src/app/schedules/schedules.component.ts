@@ -19,7 +19,7 @@ export class SchedulesComponent implements OnInit {
   }
 
   getSchedules(): void {
-    this.scheduleService.getSchedules()
+    this.scheduleService.getAll()
         .subscribe(schedules => {
           this.schedules = [];
           for (let property in schedules) {
@@ -31,7 +31,7 @@ export class SchedulesComponent implements OnInit {
 	add(name: string, body: string): void {
 	  name = name.trim();
 	  if (!name) { return; }
-	  this.scheduleService.addSchedule(name, body)
+	  this.scheduleService.add(name, body)
 		.subscribe(_ => {
 		  this.schedules.push({name: name, body: body});
 		});
@@ -39,12 +39,12 @@ export class SchedulesComponent implements OnInit {
 
 	delete(name: string): void {
 	  this.schedules = this.schedules.filter(s => s.name !== name);
-	  this.scheduleService.deleteSchedule(name).subscribe();
+	  this.scheduleService.delete(name).subscribe();
 	}
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
-    this.scheduleService.searchSchedules(filterValue)
+    this.scheduleService.search(filterValue)
         .subscribe(schedules => {
           this.schedules = [];
           for (let property in schedules) {

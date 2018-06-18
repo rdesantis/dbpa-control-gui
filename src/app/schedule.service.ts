@@ -30,7 +30,7 @@ export class ScheduleService extends DbpaService {
 
     /** GET schedules from the server */
     // Schedules are returned as a java Map<String, String> object mapping schedule name to schedule body.
-	getSchedules(): Observable<Object> {
+	getAll(): Observable<Object> {
 	  return this.http.get<Object>(this.schedulesUrl)
 		.pipe(
 		  tap(schedules => this.log(`fetched schedules`)),
@@ -39,7 +39,7 @@ export class ScheduleService extends DbpaService {
 	}
 
 	/** GET schedule body by name. Will 404 if name not found */
-	getSchedule(name: string): Observable<string> {
+	get(name: string): Observable<string> {
 	  const url = `${this.schedulesUrl}/${name}`;
 	  return this.http.get(url, {responseType: 'text'}).pipe(
 		tap(_ => this.log(`fetched schedule name=${name}`)),
@@ -48,7 +48,7 @@ export class ScheduleService extends DbpaService {
 	}
 
 	/* GET schedules whose name contains search term */
-	searchSchedules(term: string): Observable<Object> {
+	search(term: string): Observable<Object> {
 	  if (!term.trim()) {
 			term="";
 	  }
@@ -60,7 +60,7 @@ export class ScheduleService extends DbpaService {
 	}
 
 	/** PUT: update the schedule on the server */
-	updateSchedule(name: string, body: string): Observable<any> {
+	update(name: string, body: string): Observable<any> {
 	  return this.http.put(`${this.schedulesUrl}/${name}/body`, body, httpOptions).pipe(
 		tap(_ => this.log(`updated schedule name=${name}`)),
 		catchError(this.handleError<any>('updateSchedule'))
@@ -68,7 +68,7 @@ export class ScheduleService extends DbpaService {
 	}
 
 	/** PUT: add a new schedule to the server */
-	addSchedule(name: string, body: string): Observable<any> {
+	add(name: string, body: string): Observable<any> {
       return this.http.put(`${this.schedulesUrl}/${name}`, body, httpOptions).pipe(
         tap(_ => this.log(`added schedule name=${name}`)),
         catchError(this.handleError<any>('addSchedule'))
@@ -76,7 +76,7 @@ export class ScheduleService extends DbpaService {
     }
 
 	/** DELETE: delete the schedule from the server */
-	deleteSchedule(name: string): Observable<any> {
+	delete(name: string): Observable<any> {
 	  return this.http.delete<string>(`${this.schedulesUrl}/${name}`, httpOptions).pipe(
 		tap(_ => this.log(`deleted schedule name=${name}`)),
 		catchError(this.handleError<string>('deleteSchedule'))

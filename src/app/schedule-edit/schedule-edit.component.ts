@@ -46,7 +46,7 @@ export class ScheduleEditComponent implements OnInit {
     if (this.editNotCreate) {
       const name = this.route.snapshot.paramMap.get('name');
       this.schedule.name = name;
-      this.scheduleService.getSchedule(name)
+      this.scheduleService.get(name)
         .subscribe(body => this.schedule.body = body);
     }
     else {
@@ -57,11 +57,11 @@ export class ScheduleEditComponent implements OnInit {
 
 	save(): void {
     if (this.editNotCreate) {
-      this.scheduleService.updateSchedule(this.schedule.name, this.schedule.body)
+      this.scheduleService.update(this.schedule.name, this.schedule.body)
         .subscribe(() => this.goBack());
     }
     else {
-      this.scheduleService.addSchedule(this.schedule.name, this.schedule.body)
+      this.scheduleService.add(this.schedule.name, this.schedule.body)
         .subscribe(() => this.goBack());
     }
   }

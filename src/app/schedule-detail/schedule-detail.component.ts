@@ -28,12 +28,12 @@ export class ScheduleDetailComponent implements OnInit {
     const name = this.route.snapshot.paramMap.get('name');
     this.schedule = new Schedule;
     this.schedule.name = name;
-    this.scheduleService.getSchedule(name)
+    this.scheduleService.get(name)
       .subscribe(body => this.schedule.body = body);
   }
 
 	save(): void {
-	   this.scheduleService.updateSchedule(this.schedule.name, this.schedule.body)
+	   this.scheduleService.update(this.schedule.name, this.schedule.body)
 		 .subscribe(() => this.goBack());
 //		 .subscribe(() => {});	// Works; saves and does not go back
 //		 .subscribe();			// Also works; saves and does not go back
@@ -44,7 +44,7 @@ export class ScheduleDetailComponent implements OnInit {
   }
 
   delete(): void {
-    this.scheduleService.deleteSchedule(this.schedule.name)
+    this.scheduleService.delete(this.schedule.name)
     .subscribe(() => this.goBack());
  }
 
