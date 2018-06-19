@@ -2,119 +2,62 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { InMemoryDataService } from './in-memory-data.service';
 import { MessageService } from './message.service';
 import { DbpaService } from './dbpa-service';
-import { ScheduleValidation } from './schedule-validation';
-
-  const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+import { ScriptValidation } from './script-validation';
+import { ScriptParameter } from './script-parameter';
 
 @Injectable()
 export class ScriptsService extends DbpaService {
 
-  private scriptsUrl: string = DbpaService.managerUrl + 'scripts';
+  private url: string = DbpaService.managerUrl + 'scripts';
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { super(); }
+			private http: HttpClient,
+			messageService: MessageService) {
+		super("ScheduleService", messageService);
+	}
   
-  /** Log a ScheduleService message with the MessageService */
-  private log(message: string, isError: boolean = false) {
-    this.messageService.add('ScheduleService: ' + message, isError);
-  }
-
-    /** GET schedules from the server */
-    // Schedules are returned as a java Map<String, String> object mapping schedule name to schedule body.
-	getAll(): Observable<Object> {
-	  return this.http.get<Object>(this.scriptsUrl)
-		.pipe(
-		  tap(schedules => this.log(`fetched schedules`)),
-		  catchError(this.handleError('getSchedules', {}))
+	put(name: string, body: string): Observable<any> {
+		return this.http.put(`${this.url}/${encodeURIComponent(name)}`,body, DbpaService.httpOptions).pipe(
+			tap(_ => this.log(`put script name=${name}`)),
+			catchError(this.handleError<any>('scripts.put name=${name}'))
 		);
 	}
 
-	/** GET schedule body by name. Will 404 if name not found */
 	get(name: string): Observable<string> {
-	  const url = `${this.scriptsUrl}/${name}`;
+	  const url = `${this.url}/${encodeURIComponent(name)}`;
 	  return this.http.get(url, {responseType: 'text'}).pipe(
-		tap(_ => this.log(`fetched schedule name=${name}`)),
-		catchError(this.handleError<string>(`getSchedule name=${name}`, ''))
+		tap(_ => this.log(`fetched script name=${name}`)),
+		catchError(this.handleError<string>(`scripts.get name=${name}`, ''))
 	  );
 	}
 
-	/* GET schedules whose name contains search term */
-	search(term: string): Observable<Object> {
-	  if (!term.trim()) {
-			term="";
-	  }
-		return this.http.get<Object>(`${this.scriptsUrl}/?like=%25${term}%25`)
-		.pipe(
-			tap(_ => this.log(`found schedules matching "${term}"`)),
-			catchError(this.handleError('searchSchedules', {}))
-	  );
-	}
-
-	/** PUT: update the schedule on the server */
-	update(name: string, body: string): Observable<any> {
-	  return this.http.put(`${this.scriptsUrl}/${name}/body`, body, httpOptions).pipe(
-		tap(_ => this.log(`updated schedule name=${name}`)),
-		catchError(this.handleError<any>('updateSchedule'))
-	  );
-	}
-
-	/** PUT: add a new schedule to the server */
-	add(name: string, body: string): Observable<any> {
-      return this.http.put(`${this.scriptsUrl}/${name}`, body, httpOptions).pipe(
-        tap(_ => this.log(`added schedule name=${name}`)),
-        catchError(this.handleError<any>('addSchedule'))
-      );
-    }
-
-	/** DELETE: delete the schedule from the server */
 	delete(name: string): Observable<any> {
-	  return this.http.delete<string>(`${this.scriptsUrl}/${name}`, httpOptions).pipe(
-		tap(_ => this.log(`deleted schedule name=${name}`)),
-		catchError(this.handleError<string>('deleteSchedule'))
+	  return this.http.delete<string>(`${this.url}/${encodeURIComponent(name)}`, DbpaService.httpOptions).pipe(
+		tap(_ => this.log(`deleted script name=${name}`)),
+		catchError(this.handleError<string>(`scripts.delete name=${name}`))
 	  );
 	}
 
 	/** PUT:validate schedule body on server without storing it */
-	validateBody(body: string): Observable<ScheduleValidation> {
-		return this.http.put<ScheduleValidation>(`${this.scriptsUrl}/validate`, body, httpOptions).pipe(
-			tap(_ => this.log(`validated schedule body`)),
-			catchError(this.handleError<ScheduleValidation>('validateSchedule'))
+	validateBody(body: string): Observable<ScriptValidation> {
+		return this.http.put<ScriptValidation>(`${this.url}/validate`, body, DbpaService.httpOptions).pipe(
+			tap(_ => this.log(`validated script body`)),
+			catchError(this.handleError<ScriptValidation>(`scripts.validateBody`))
 		);
 	}
 
-	rename(name: string, newName: string): Observable<any> {
-	  return this.http.put(`${this.scriptsUrl}/${name}/rename`, newName, httpOptions).pipe(
-		tap(_ => this.log(`updated schedule name=${name} to newName=${newName}`)),
-		catchError(this.handleError<any>('rename'))
+	validateAll(likeName: string): Observable<Object> {
+	  if (!likeName.trim()) {
+			likeName="";
+	  }
+		return this.http.get<Object>(`${this.url}/-/validations?like=${encodeURIComponent('*' + likeName + '*')}`)
+		.pipe(
+			tap(_ => this.log(`validated scripts matching "${likeName}"`)),
+			catchError(this.handleError(`scripts.validateAll like=${likeName}`, {}))
 	  );
-	}
-
-/**
-	 * Handle Http operation that failed.
-	 * Let the app continue.
-	 * @param operation - name of the operation that failed
-	 * @param result - optional value to return as the observable result
-	 */
-	private handleError<T>(operation = 'operation', result?: T) {
-	  return (error: any): Observable<T> => {
-
-		// TODO: send the error to remote logging infrastructure
-		console.error(error); // log to console instead
-
-		// TODO: better job of transforming error for user consumption
-		this.log(`${operation} failed: ${error.message}`, true);
-
-		// Let the app keep running by returning an empty result.
-		return of(result as T);
-	  };
 	}
 }
