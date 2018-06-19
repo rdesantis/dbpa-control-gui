@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Schedule } from '../schedule';
-import { ScheduleService } from '../schedule.service';
+import { SchedulesService } from '../schedules.service';
 
 @Component({
   selector: 'app-schedules',
@@ -12,7 +12,7 @@ export class SchedulesComponent implements OnInit {
 
   schedules: Schedule[];
 
-  constructor(private scheduleService: ScheduleService) { }
+  constructor(private scheduleService: SchedulesService) { }
 
   ngOnInit() {
     this.getSchedules();

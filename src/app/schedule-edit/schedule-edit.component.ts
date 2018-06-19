@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { ScheduleService }  from '../schedule.service';
+import { SchedulesService }  from '../schedules.service';
 import { Schedule } from '../schedule';
 import { ScheduleValidation } from '../schedule-validation';
 import { RecurrenceMode, DateUnit, DateRecurrence, LogicalOrdinal, LogicalDay, TimeUnit, ScheduleConfig } from '../schedule-config';
@@ -26,7 +26,7 @@ export class ScheduleEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private scheduleService: ScheduleService,
+    private scheduleService: SchedulesService,
     private location: Location
   ) {}
 

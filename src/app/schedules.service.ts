@@ -15,7 +15,7 @@ import { ScheduleValidation } from './schedule-validation';
   };
 
 @Injectable()
-export class ScheduleService extends DbpaService {
+export class SchedulesService extends DbpaService {
 
   private schedulesUrl: string = DbpaService.managerUrl + 'schedules';
 

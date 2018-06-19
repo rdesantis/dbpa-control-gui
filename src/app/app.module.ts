@@ -7,20 +7,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
-import { AppComponent }         from './app.component';
-import { DashboardComponent }   from './dashboard/dashboard.component';
-import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
-import { ScheduleDetailComponent }  from './schedule-detail/schedule-detail.component';
-import { HeroesComponent }      from './heroes/heroes.component';
-import { SchedulesComponent } from './schedules/schedules.component';
-import { HeroService }          from './hero.service';
-import { ScheduleService }          from './schedule.service';
-import { MessageService }       from './message.service';
-import { MessagesComponent }    from './messages/messages.component';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
-import { AppRoutingModule }     from './app-routing.module';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { MessageService } from './message.service';
+import { MessagesComponent } from './messages/messages.component';
+import { SchedulesService } from './schedules.service';
+import { SchedulesComponent } from './schedules/schedules.component';
+import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
+import { ScriptsService } from './scripts.service';
+import { ScriptsComponent } from './scripts/scripts.component';
+
+// TODO: delete these:
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeroService } from './hero.service';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 
 @NgModule({
   imports: [
@@ -39,16 +43,19 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 ],
   declarations: [
     AppComponent,
+
+    MessagesComponent,
+    SchedulesComponent,
+    ScheduleDetailComponent,
+    ScheduleEditComponent,
+    ScriptsComponent,
+
     DashboardComponent,
     HeroesComponent,
-    SchedulesComponent,
     HeroDetailComponent,
-    ScheduleDetailComponent,
-    MessagesComponent,
-    HeroSearchComponent,
-    ScheduleEditComponent
+    HeroSearchComponent
   ],
-  providers: [ HeroService, ScheduleService, MessageService ],
+  providers: [ MessageService, SchedulesService, ScriptsService, HeroService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
