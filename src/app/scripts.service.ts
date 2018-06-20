@@ -50,11 +50,10 @@ export class ScriptsService extends DbpaService {
 		);
 	}
 
-	validateAll(likeName: string): Observable<Object> {
-	  if (!likeName.trim()) {
-			likeName="";
-	  }
-		return this.http.get<Object>(`${this.url}/-/validations?like=${encodeURIComponent('*' + likeName + '*')}`)
+	validateAll(directory: string, likeName: string): Observable<Object> {
+		let prefix: string = (directory) ? directory + `/` : ``;
+		let wildName: string = (likeName) ? `*${likeName.trim()}*` : `*`;
+		return this.http.get<Object>(`${this.url}/-/validations?like=${prefix + wildName}`)
 		.pipe(
 			tap(_ => this.log(`validated scripts matching "${likeName}"`)),
 			catchError(this.handleError(`scripts.validateAll like=${likeName}`, {}))

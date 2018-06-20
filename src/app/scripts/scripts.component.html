@@ -1,3 +1,22 @@
-<p>
-  scripts works!
-</p>
+<div id="actions-bar">Scripts
+  <input type="text" class="actions-filter" (keyup)="setDirectory($event.target.value)" placeholder="Enter directory name">
+  <input type="text" class="actions-filter" (keyup)="setFilter($event.target.value)" placeholder="Enter filter value">
+  <a class="actions-link" routerLink="/script-edit">Create Script</a>
+</div>
+
+<div id="work-area">
+  <table class="grid" id="scripts" class="margined">
+    <thead class="grid-header">
+      <tr>
+        <th class="name">Name</th>
+        <!--th class="body">Definition</th-->
+      </tr>
+    </thead>
+    <tbody class="grid-content">
+      <tr *ngFor="let script of scripts">
+        <td class="name"><a routerLink="/script-detail/{{script.name}}">{{script.name}}</a></td>
+        <!--td class="body">{{schedule.body}}</td-->
+      </tr>
+    </tbody>
+  </table>
+</div>

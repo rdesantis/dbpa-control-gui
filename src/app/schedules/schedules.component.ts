@@ -28,20 +28,6 @@ export class SchedulesComponent implements OnInit {
         });
   }
 
-	add(name: string, body: string): void {
-	  name = name.trim();
-	  if (!name) { return; }
-	  this.scheduleService.add(name, body)
-		.subscribe(_ => {
-		  this.schedules.push({name: name, body: body});
-		});
-	}
-
-	delete(name: string): void {
-	  this.schedules = this.schedules.filter(s => s.name !== name);
-	  this.scheduleService.delete(name).subscribe();
-	}
-
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     this.scheduleService.search(filterValue)

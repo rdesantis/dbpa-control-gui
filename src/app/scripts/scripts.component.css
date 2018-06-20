@@ -1,0 +1,3 @@
+#scripts tbody.grid-content { height:300px; }
+#scripts th.name, #scripts td.name { width:180px; }
+#scripts th.body, #scripts td.body { width:320px; }
