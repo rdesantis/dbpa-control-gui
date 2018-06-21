@@ -1,3 +1,7 @@
 #scripts tbody.grid-content { height:300px; }
+#scripts th.arg-number { text-align: center; }
+#scripts th.scroll-bar-space { width: 10px; }
 #scripts th.name, #scripts td.name { width:180px; }
-#scripts th.body, #scripts td.body { width:320px; }
+#scripts th.valid, #scripts td.valid { width:50px; }
+#scripts th.arg-name, #scripts td.arg-name { width:100px; }
+#scripts th.arg-type, #scripts td.arg-type { width:80px; }

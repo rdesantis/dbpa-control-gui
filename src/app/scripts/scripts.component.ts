@@ -14,6 +14,8 @@ export class ScriptsComponent implements OnInit {
   directory: string = "";
   filter: string = "";
 
+  maxParameters: number = 0;
+
   constructor(private scriptsService: ScriptsService) { }
 
   ngOnInit() {
@@ -37,6 +39,19 @@ export class ScriptsComponent implements OnInit {
           for (let property in scripts) {
             this.scripts.push({name: property, body: null, validation: scripts[property]});
           }
+          this.setMaxParameters();
         });
+  }
+
+  private setMaxParameters(): void {
+    let result: number = 0;
+    for (let script of this.scripts) {
+      result = Math.max(result, script.validation.parameters.length);
+    }
+    this.maxParameters = result;
+  }
+
+  getArgNumbers(): number[] {
+    return Array.from(Array(this.maxParameters).keys());
   }
 }

@@ -7,15 +7,29 @@
 <div id="work-area">
   <table class="grid" id="scripts" class="margined">
     <thead class="grid-header">
+      <tr *ngIf="0 < maxParameters">
+        <th colspan="2"></th>
+        <th colspan="2" class="arg-number" *ngFor="let argNumber of getArgNumbers()">Argument {{argNumber + 1}}</th>
+        <th class="scroll-bar-space"></th>
+      </tr>
       <tr>
         <th class="name">Name</th>
-        <!--th class="body">Definition</th-->
+        <th class="valid">Valid?</th>
+        <ng-container *ngFor="let argNumber of getArgNumbers()">
+          <th class="arg-name">Name</th>
+          <th class="arg-type">Type</th>
+        </ng-container>
+        <th class="scroll-bar-space"></th>
       </tr>
     </thead>
     <tbody class="grid-content">
       <tr *ngFor="let script of scripts">
         <td class="name"><a routerLink="/script-detail/{{script.name}}">{{script.name}}</a></td>
-        <!--td class="body">{{schedule.body}}</td-->
+        <td class="valid">{{script.validation.valid?'Yes':'No'}}</td>
+        <ng-container *ngFor="let parameter of script.validation.parameters">
+          <td class="arg-name">{{parameter.name}}</td>
+          <td class="arg-type">{{parameter.typeName}}</td>
+        </ng-container>
       </tr>
     </tbody>
   </table>
