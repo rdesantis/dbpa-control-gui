@@ -1,7 +1,7 @@
 <div id="actions-bar">
   <a class="actions-breadcrumb" routerLink="/scripts">Scripts</a> > {{ script.name }}
   <span *ngIf="!isRenaming">
-    <a class="actions-link" routerLink="/script-edit/{{script.name}}">Edit</a>
+    <a class="actions-link" routerLink="/script-edit/{{originalEncodedName}}">Edit</a>
     <button class="actions-button" (click)="startRename()">Rename</button>
     <button class="actions-button" (click)="delete()">Delete</button>
   </span>
@@ -21,7 +21,7 @@
     <span>Definition</span>
     <button style="visibility: hidden">Clear definition</button>
     <div class="panel definition-panel margined">
-      <textarea id="definition" [(ngModel)]="script.body" placeholder="Definition" readonly="true" class="read-only"></textarea>
+      <textarea id="definition" [(ngModel)]="script.body" placeholder="Definition" readonly="true" class="read-only" wrap="off"></textarea>
     </div>
   </div>
 </div>

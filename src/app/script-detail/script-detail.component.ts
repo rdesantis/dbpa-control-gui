@@ -12,6 +12,7 @@ import { Script } from '../script';
 })
 export class ScriptDetailComponent implements OnInit {
   @Input() script: Script;
+  originalEncodedName: string;
   originalName: string;
   isRenaming: boolean = false;
 
@@ -22,7 +23,8 @@ export class ScriptDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.originalName = decodeURIComponent(this.route.snapshot.paramMap.get('name'));
+    this.originalEncodedName = this.route.snapshot.paramMap.get('name');
+    this.originalName = decodeURIComponent(this.originalEncodedName);
     this.get();
   }
 
