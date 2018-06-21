@@ -86,7 +86,7 @@ export class SchedulesService extends DbpaService {
 	rename(name: string, newName: string): Observable<any> {
 	  return this.http.put(`${this.url}/${name}/rename`, newName, DbpaService.httpOptions).pipe(
 		tap(_ => this.log(`renamed schedule name=${name} to newName=${newName}`)),
-		catchError(this.handleError<any>(`schedules.name name=${name} newName=${newName}`))
+		catchError(this.handleError<any>(`schedules.rename name=${name} newName=${newName}`))
 	  );
 	}
 }
