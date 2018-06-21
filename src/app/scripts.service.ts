@@ -35,6 +35,13 @@ export class ScriptsService extends DbpaService {
 	  );
 	}
 
+	rename(name: string, newName: string): Observable<any> {
+		return this.http.put(`${this.url}/${encodeURIComponent(name)}/rename`, newName, DbpaService.httpOptions).pipe(
+			tap(_ => this.log(`renamed script name=${name} to newName=${newName}`)),
+			catchError(this.handleError<any>(`scripts.rename name=${name} newName=${newName}`))
+			);
+	}
+
 	delete(name: string): Observable<any> {
 	  return this.http.delete<string>(`${this.url}/${encodeURIComponent(name)}`, DbpaService.httpOptions).pipe(
 		tap(_ => this.log(`deleted script name=${name}`)),

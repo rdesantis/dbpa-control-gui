@@ -57,9 +57,8 @@ export class ScriptDetailComponent implements OnInit {
   saveRename(): void {
     this.isRenaming = false;
     const name = this.route.snapshot.paramMap.get('name');
-    // TODO
-    // this.scriptService.rename(name, this.script.name)
-    // .subscribe(() => this.goBack());
+    this.scriptService.rename(name, this.script.name)
+    .subscribe(() => this.goBack());
  }
 
   cancelRename(): void {
