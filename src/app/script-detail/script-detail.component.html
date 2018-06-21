@@ -1,0 +1,27 @@
+<div id="actions-bar">
+  <a class="actions-breadcrumb" routerLink="/scripts">Scripts</a> > {{ script.name }}
+  <span *ngIf="!isRenaming">
+    <a class="actions-link" routerLink="/script-edit/{{script.name}}">Edit</a>
+    <button class="actions-button" (click)="startRename()">Rename</button>
+    <button class="actions-button" (click)="delete()">Delete</button>
+  </span>
+  <span *ngIf="isRenaming"> > Rename
+    <button class="actions-button" (click)="saveRename()">Save</button>
+    <button class="actions-button" (click)="cancelRename()">Cancel</button>
+  </span>
+</div>
+
+<div id="work-area">
+  <div class="margined">
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="script.name" [readonly]="!isRenaming" [ngClass]="!isRenaming?'read-only':''">
+  </div>
+
+  <div class="margined">
+    <span>Definition</span>
+    <button style="visibility: hidden">Clear definition</button>
+    <div class="panel definition-panel margined">
+      <textarea id="definition" [(ngModel)]="script.body" placeholder="Definition" readonly="true" class="read-only"></textarea>
+    </div>
+  </div>
+</div>

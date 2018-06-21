@@ -17,7 +17,7 @@ export class ScriptsService extends DbpaService {
   constructor(
 			private http: HttpClient,
 			messageService: MessageService) {
-		super("ScheduleService", messageService);
+		super("ScriptsService", messageService);
 	}
   
 	put(name: string, body: string): Observable<any> {
