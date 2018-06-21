@@ -12,6 +12,7 @@ import { Script } from '../script';
 })
 export class ScriptDetailComponent implements OnInit {
   @Input() script: Script;
+  originalName: string;
   isRenaming: boolean = false;
 
   constructor(
@@ -21,26 +22,15 @@ export class ScriptDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getScript();
+    this.originalName = decodeURIComponent(this.route.snapshot.paramMap.get('name'));
+    this.get();
   }
 
-  getScript(): void {
-    const name = this.route.snapshot.paramMap.get('name');
+  get(): void {
     this.script = new Script;
-    this.script.name = name;
-    this.scriptService.get(name)
+    this.script.name = this.originalName;
+    this.scriptService.get(this.originalName)
       .subscribe(body => this.script.body = body);
-  }
-
-	save(): void {
-	   this.scriptService.put(this.script.name, this.script.body)
-		 .subscribe(() => this.goBack());
-//		 .subscribe(() => {});	// Works; saves and does not go back
-//		 .subscribe();			// Also works; saves and does not go back
-	 }
-
-  goBack(): void {
-    this.location.back();
   }
 
   delete(): void {
@@ -56,13 +46,16 @@ export class ScriptDetailComponent implements OnInit {
 
   saveRename(): void {
     this.isRenaming = false;
-    const name = this.route.snapshot.paramMap.get('name');
-    this.scriptService.rename(name, this.script.name)
+    this.scriptService.rename(this.originalName, this.script.name)
     .subscribe(() => this.goBack());
  }
 
   cancelRename(): void {
     this.isRenaming = false;
-    this.script.name = this.route.snapshot.paramMap.get('name');
+    this.script.name = this.originalName;
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

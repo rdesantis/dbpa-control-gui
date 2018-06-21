@@ -54,4 +54,9 @@ export class ScriptsComponent implements OnInit {
   getArgNumbers(): number[] {
     return Array.from(Array(this.maxParameters).keys());
   }
+
+  getEncodedName(name: string): string {
+    return encodeURIComponent(name);
+  }
+
 }

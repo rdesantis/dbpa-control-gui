@@ -24,7 +24,7 @@
     </thead>
     <tbody class="grid-content">
       <tr *ngFor="let script of scripts">
-        <td class="name"><a routerLink="/script-detail/{{script.name}}">{{script.name}}</a></td>
+        <td class="name"><a routerLink="/script-detail/{{getEncodedName(script.name)}}">{{script.name}}</a></td>
         <td class="valid">{{script.validation.valid?'Yes':'No'}}</td>
         <ng-container *ngFor="let parameter of script.validation.parameters">
           <td class="arg-name">{{parameter.name}}</td>
