@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ScriptsService }  from '../scripts.service';
 import { Script } from '../script';
@@ -12,14 +11,14 @@ import { ScriptValidation } from '../script-validation';
   styleUrls: ['./script-edit.component.css']
 })
 export class ScriptEditComponent implements OnInit {
-  @Input() script: Script;
+  script: Script;
   originalEncodedName: string;
   editNotCreate: boolean;
 
   constructor(
     private route: ActivatedRoute,
-    private scriptService: ScriptsService,
-    private location: Location
+    private router: Router,
+    private scriptService: ScriptsService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +34,7 @@ export class ScriptEditComponent implements OnInit {
     if (this.editNotCreate) {
       this.script.name = decodeURIComponent(this.originalEncodedName);
       this.scriptService.get(this.script.name)
-        .subscribe(body => this.script.body = body);
+          .subscribe(body => { this.script.body = body; this.validate(); });
     }
     else {
       this.script.name = "";
@@ -45,11 +44,7 @@ export class ScriptEditComponent implements OnInit {
 
 	save(): void {
     this.scriptService.put(this.script.name, this.script.body)
-      .subscribe(() => this.goBack());
-  }
-
-  goBack(): void {
-    this.location.back();
+        .subscribe(() => this.router.navigate(["/script-detail", encodeURIComponent(this.script.name)]));
   }
 
   reset(): void {

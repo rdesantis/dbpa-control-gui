@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { SchedulesService }  from '../schedules.service';
 import { Schedule } from '../schedule';
@@ -14,7 +13,7 @@ import { ScheduleConfigBindable } from '../schedule-config-bindable';
   styleUrls: ['./schedule-edit.component.css']
 })
 export class ScheduleEditComponent implements OnInit {
-  @Input() schedule: Schedule;
+  schedule: Schedule;
   editNotCreate: boolean;
   validation: ScheduleValidation;
   config: ScheduleConfig;
@@ -26,8 +25,8 @@ export class ScheduleEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private scheduleService: SchedulesService,
-    private location: Location
+    private router: Router,
+    private scheduleService: SchedulesService
   ) {}
 
   ngOnInit(): void {
@@ -47,27 +46,20 @@ export class ScheduleEditComponent implements OnInit {
       const name = this.route.snapshot.paramMap.get('name');
       this.schedule.name = name;
       this.scheduleService.get(name)
-        .subscribe(body => this.schedule.body = body);
+          .subscribe(body => this.schedule.body = body);
     }
     else {
       this.schedule.name = "";
       this.schedule.body = "";
-    }
+      document.getElementById("name").focus();
+      // The element has the focus but on Edge it is not visually obvious until you start typing; on Chrome it is.
+      }
   }
 
 	save(): void {
-    if (this.editNotCreate) {
-      this.scheduleService.update(this.schedule.name, this.schedule.body)
-        .subscribe(() => this.goBack());
-    }
-    else {
-      this.scheduleService.add(this.schedule.name, this.schedule.body)
-        .subscribe(() => this.goBack());
-    }
-  }
-
-  goBack(): void {
-    this.location.back();
+    let service = this.editNotCreate ? this.scheduleService.update : this.scheduleService.add;
+    service.call(this.scheduleService, this.schedule.name, this.schedule.body)
+        .subscribe(() => this.router.navigate(["/schedule-detail", this.schedule.name]));
   }
 
   reset(): void {

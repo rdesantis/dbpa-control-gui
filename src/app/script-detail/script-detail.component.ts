@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ScriptsService }  from '../scripts.service';
 import { Script } from '../script';
@@ -11,15 +10,15 @@ import { Script } from '../script';
   styleUrls: ['./script-detail.component.css']
 })
 export class ScriptDetailComponent implements OnInit {
-  @Input() script: Script;
+  script: Script;
   originalEncodedName: string;
   originalName: string;
   isRenaming: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private scriptService: ScriptsService,
-    private location: Location
+    private router: Router,
+    private scriptService: ScriptsService
   ) {}
 
   ngOnInit(): void {
@@ -37,27 +36,29 @@ export class ScriptDetailComponent implements OnInit {
 
   delete(): void {
     this.scriptService.delete(this.script.name)
-    .subscribe(() => this.goBack());
- }
+        .subscribe(() => this.router.navigate(['/scripts']));
+  }
 
   startRename(): void {
     this.isRenaming = true;
     document.getElementById("name").focus();
-    // The element has the focus but on Edge it is not visually obvious until you strt typing; on Chrome it is.
+    // The element has the focus but on Edge it is not visually obvious until you start typing; on Chrome it is.
   }
 
   saveRename(): void {
     this.isRenaming = false;
     this.scriptService.rename(this.originalName, this.script.name)
-    .subscribe(() => this.goBack());
+    // The attempt to navigate to the new name doesn't actually re-initialize the page.
+    // So all variables must be updated.
+        .subscribe(() => {
+          this.originalName = this.script.name;
+          this.originalEncodedName = encodeURIComponent(this.originalName);
+          this.router.navigate(['/script-detail', this.originalEncodedName]);
+        });
  }
 
   cancelRename(): void {
     this.isRenaming = false;
     this.script.name = this.originalName;
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 }

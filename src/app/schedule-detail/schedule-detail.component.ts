@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { SchedulesService }  from '../schedules.service';
 import { Schedule } from '../schedule';
@@ -12,40 +11,30 @@ import { Schedule } from '../schedule';
 })
 export class ScheduleDetailComponent implements OnInit {
   @Input() schedule: Schedule;
+  originalName: string;
   isRenaming: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private scheduleService: SchedulesService,
-    private location: Location
+    private router: Router,
+    private scheduleService: SchedulesService
   ) {}
 
   ngOnInit(): void {
-    this.getSchedule();
+    this.originalName = this.route.snapshot.paramMap.get('name');
+    this.get();
   }
 
-  getSchedule(): void {
-    const name = this.route.snapshot.paramMap.get('name');
+  get(): void {
     this.schedule = new Schedule;
-    this.schedule.name = name;
-    this.scheduleService.get(name)
-      .subscribe(body => this.schedule.body = body);
-  }
-
-	save(): void {
-	   this.scheduleService.update(this.schedule.name, this.schedule.body)
-		 .subscribe(() => this.goBack());
-//		 .subscribe(() => {});	// Works; saves and does not go back
-//		 .subscribe();			// Also works; saves and does not go back
-	 }
-
-  goBack(): void {
-    this.location.back();
+    this.schedule.name = this.originalName;
+    this.scheduleService.get(this.originalName)
+        .subscribe(body => this.schedule.body = body);
   }
 
   delete(): void {
     this.scheduleService.delete(this.schedule.name)
-    .subscribe(() => this.goBack());
+        .subscribe(() => this.router.navigate(['/schedules']));
  }
 
   startRename(): void {
@@ -56,13 +45,12 @@ export class ScheduleDetailComponent implements OnInit {
 
   saveRename(): void {
     this.isRenaming = false;
-    const name = this.route.snapshot.paramMap.get('name');
-    this.scheduleService.rename(name, this.schedule.name)
-    .subscribe(() => this.goBack());
- }
+    this.scheduleService.rename(this.originalName, this.schedule.name)
+        .subscribe(() => this.router.navigate(['/schedule-detail', this.schedule.name]));
+  }
 
   cancelRename(): void {
     this.isRenaming = false;
-    this.schedule.name = this.route.snapshot.paramMap.get('name');
+    this.schedule.name = this.originalName;
   }
 }
