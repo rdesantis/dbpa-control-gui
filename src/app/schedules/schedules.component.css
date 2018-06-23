@@ -2,4 +2,5 @@
 
 #schedules tbody.grid-content { height:300px; }
 #schedules th.name, #schedules td.name { width:180px; }
+#schedules td.name:hover { position: relative; left: .1em; background-color: lightcyan; }
 #schedules th.body, #schedules td.body { width:320px; }
