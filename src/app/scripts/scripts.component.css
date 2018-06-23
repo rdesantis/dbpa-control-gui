@@ -1,5 +1,5 @@
 #scripts tbody.grid-content { height:300px; }
-#scripts th.arg-number { text-align: center; }
+#scripts th.param-number { text-align: center; }
 #scripts th.scroll-bar-space { width: 10px; }
 #scripts th.name, #scripts td.name { width:180px; }
 #scripts th.valid, #scripts td.valid { width:50px; }
