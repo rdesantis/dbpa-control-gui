@@ -1,13 +1,17 @@
 <div id="actions-bar">
   <a class="actions-breadcrumb" routerLink="/scripts">Scripts</a> > {{ script.name }}
-  <span *ngIf="!isRenaming">
+  <span *ngIf="!isRenaming && !isDeleting">
     <a class="actions-link" routerLink="/script-edit/{{originalEncodedName}}">Edit</a>
     <button class="actions-button" (click)="startRename()">Rename</button>
-    <button class="actions-button" (click)="delete()">Delete</button>
+    <button class="actions-button" (click)="startDelete()">Delete</button>
   </span>
   <span *ngIf="isRenaming"> > Rename
     <button class="actions-button" (click)="saveRename()">Save</button>
     <button class="actions-button" (click)="cancelRename()">Cancel</button>
+  </span>
+  <span *ngIf="isDeleting"> > Delete?
+    <button class="actions-button" (click)="doDelete()">Confirm</button>
+    <button class="actions-button" (click)="cancelDelete()">Cancel</button>
   </span>
 </div>
 

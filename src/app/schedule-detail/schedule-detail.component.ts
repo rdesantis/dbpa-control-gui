@@ -13,6 +13,7 @@ export class ScheduleDetailComponent implements OnInit {
   @Input() schedule: Schedule;
   originalName: string;
   isRenaming: boolean = false;
+  isDeleting: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,11 +33,6 @@ export class ScheduleDetailComponent implements OnInit {
         .subscribe(body => this.schedule.body = body);
   }
 
-  delete(): void {
-    this.scheduleService.delete(this.schedule.name)
-        .subscribe(() => this.router.navigate(['/schedules']));
- }
-
   startRename(): void {
     this.isRenaming = true;
     document.getElementById("name").focus();
@@ -52,5 +48,18 @@ export class ScheduleDetailComponent implements OnInit {
   cancelRename(): void {
     this.isRenaming = false;
     this.schedule.name = this.originalName;
+  }
+
+  startDelete(): void {
+    this.isDeleting = true;
+  }
+
+  doDelete(): void {
+    this.scheduleService.delete(this.schedule.name)
+        .subscribe(() => this.router.navigate(['/schedules']));
+  }
+
+  cancelDelete(): void {
+    this.isDeleting = false;
   }
 }

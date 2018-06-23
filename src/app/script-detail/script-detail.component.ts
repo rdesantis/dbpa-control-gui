@@ -14,6 +14,7 @@ export class ScriptDetailComponent implements OnInit {
   originalEncodedName: string;
   originalName: string;
   isRenaming: boolean = false;
+  isDeleting: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,11 +35,6 @@ export class ScriptDetailComponent implements OnInit {
       .subscribe(body => this.script.body = body);
   }
 
-  delete(): void {
-    this.scriptService.delete(this.script.name)
-        .subscribe(() => this.router.navigate(['/scripts']));
-  }
-
   startRename(): void {
     this.isRenaming = true;
     document.getElementById("name").focus();
@@ -55,10 +51,23 @@ export class ScriptDetailComponent implements OnInit {
           this.originalEncodedName = encodeURIComponent(this.originalName);
           this.router.navigate(['/script-detail', this.originalEncodedName]);
         });
- }
+  }
 
   cancelRename(): void {
     this.isRenaming = false;
     this.script.name = this.originalName;
+  }
+
+  startDelete(): void {
+    this.isDeleting = true;
+  }
+
+  doDelete(): void {
+    this.scriptService.delete(this.script.name)
+        .subscribe(() => this.router.navigate(['/scripts']));
+  }
+
+  cancelDelete(): void {
+    this.isDeleting = false;
   }
 }
