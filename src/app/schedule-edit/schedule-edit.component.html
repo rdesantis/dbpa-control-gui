@@ -15,7 +15,7 @@
     <span id="manual-schedule">Definition</span>
     <button (click)="clear()">Clear definition</button>
     <div id="manual" class="panel schedule-mode-config margined">
-      <textarea id="definition" [(ngModel)]="schedule.body" placeholder="Enter schedule definition" (keyup)="validate()"></textarea>
+      <textarea id="definition" [(ngModel)]="schedule.body" placeholder="Enter schedule definition or select below" (keyup)="validate()"></textarea>
       <div id="validation" *ngIf="!validation.valid">{{validation.validationMessage}}</div>
     </div>
   </div>
