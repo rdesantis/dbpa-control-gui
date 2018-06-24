@@ -27,7 +27,12 @@
       <tr *ngFor="let jobWithName of jobsWithNames">
         <td class="name"><a routerLink="/job-detail/{{jobWithName.name}}">{{jobWithName.name}}</a></td>
         <td class="script"><a routerLink="/script-detail/{{jobWithName.job.scriptName}}">{{jobWithName.job.scriptName}}</a></td>
-        <td class="schedules">{{jobWithName.job.scheduleNames.join(', ')}}</td>
+        <td class="schedules">
+          <ng-container *ngFor="let scheduleName of jobWithName.job.scheduleNames; let i=index">
+            <ng-container *ngIf="0 < i">, </ng-container>
+            <a routerLink="/schedule-detail/{{scheduleName}}">{{scheduleName}}</a>
+          </ng-container>
+        </td>
         <td class="enabled">{{jobWithName.job.enabled?'Yes':'No'}}</td>
         <ng-container *ngFor="let argument of jobWithName.getArguments()">
           <td class="argument-name">{{argument.name}}</td>
