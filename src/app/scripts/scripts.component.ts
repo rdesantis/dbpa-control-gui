@@ -51,7 +51,7 @@ export class ScriptsComponent implements OnInit {
     this.maxParameters = result;
   }
 
-  getParamNumbers(): number[] {
+  getParameterNumbers(): number[] {
     return Array.from(Array(this.maxParameters).keys());
   }
 

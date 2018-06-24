@@ -1,0 +1,39 @@
+<div id="actions-bar">Scripts
+  <input type="text" class="actions-filter" (keyup)="setFilter($event.target.value)" placeholder="Enter filter value">
+  <a class="actions-link" routerLink="/job-edit">Create Job</a>
+</div>
+
+<div id="work-area">
+  <table class="grid" id="jobs" class="margined">
+    <thead class="grid-header">
+      <tr *ngIf="0 < maxArguments">
+        <th colspan="4"></th>
+        <th colspan="2" class="argument-number" *ngFor="let argumentNumber of getArgumentNumbers()">Argument {{argumentNumber + 1}}</th>
+        <th class="scroll-bar-space"></th>
+      </tr>
+      <tr>
+        <th class="name">Name</th>
+        <th class="script">Script</th>
+        <th class="schedules">Schedules</th>
+        <th class="enabled">Enabled?</th>
+        <ng-container *ngFor="let argumentNumber of getArgumentNumbers()">
+          <th class="argument-name">Name</th>
+          <th class="argument-value">Value</th>
+        </ng-container>
+        <th class="scroll-bar-space"></th>
+      </tr>
+    </thead>
+    <tbody class="grid-content">
+      <tr *ngFor="let jobWithName of jobsWithNames">
+        <td class="name"><a routerLink="/job-detail/{{jobWithName.name}}">{{jobWithName.name}}</a></td>
+        <td class="script"><a routerLink="/script-detail/{{jobWithName.job.scriptName}}">{{jobWithName.job.scriptName}}</a></td>
+        <td class="schedules">{{jobWithName.job.scheduleNames.join(', ')}}</td>
+        <td class="enabled">{{jobWithName.job.enabled?'Yes':'No'}}</td>
+        <ng-container *ngFor="let argument of jobWithName.getArguments()">
+          <td class="argument-name">{{argument.name}}</td>
+          <td class="argument-value">{{argument.value}}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
