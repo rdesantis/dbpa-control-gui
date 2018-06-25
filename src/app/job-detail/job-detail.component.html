@@ -22,25 +22,28 @@
     <input type="text" id="name" [(ngModel)]="name" [readonly]="!isRenaming" [ngClass]="!isRenaming?'read-only':''">
   </div>
 
-  <table class="grid" id="runs" class="margined">
-    <thead class="grid-header">
-      <tr>
-        <th class="run-id">Run ID</th>
-        <th class="start-time">Start Time</th>
-        <th class="end-time">End Time</th>
-        <th class="status">Status</th>
-        <th class="message">Message</th>
-        <th class="scroll-bar-space"></th>
-      </tr>
-    </thead>
-    <tbody class="grid-content">
-      <tr *ngFor="let run of runs">
-        <td class="run-id">{{run.runId}}</td>
-        <td class="start-time">{{formatDateTime(run.state.startTime)}}</td>
-        <td class="end-time">{{formatDateTime(run.state.endTime)}}</td>
-        <td class="status">{{run.state.status}}</td>
-        <td class="message">{{run.state.message}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="margined">
+    Runs
+    <table class="grid" id="runs" class="margined">
+      <thead class="grid-header">
+        <tr>
+          <th class="run-id">Run ID</th>
+          <th class="start-time">Start Time</th>
+          <th class="end-time">End Time</th>
+          <th class="status">Status</th>
+          <th class="message">Message</th>
+          <th class="scroll-bar-space"></th>
+        </tr>
+      </thead>
+      <tbody class="grid-content">
+        <tr *ngFor="let run of runs">
+          <td class="run-id">{{run.runId}}</td>
+          <td class="start-time">{{formatDateTime(run.state.startTime)}}</td>
+          <td class="end-time">{{formatDateTime(run.state.endTime)}}</td>
+          <td class="status">{{run.state.status}}</td>
+          <td class="message">{{run.state.message}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
