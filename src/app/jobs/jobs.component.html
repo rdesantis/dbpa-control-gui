@@ -1,4 +1,4 @@
-<div id="actions-bar">Scripts
+<div id="actions-bar">Jobs
   <input type="text" class="actions-filter" (keyup)="setFilter($event.target.value)" placeholder="Enter filter value">
   <a class="actions-link" routerLink="/job-edit">Create Job</a>
 </div>
@@ -12,8 +12,8 @@
         <th class="scroll-bar-space"></th>
       </tr>
       <tr>
-        <th class="name">Name</th>
-        <th class="script">Script</th>
+        <th class="name">Job Name</th>
+        <th class="script">Script Name</th>
         <th class="schedules">Schedules</th>
         <th class="enabled">Enabled?</th>
         <ng-container *ngFor="let argumentNumber of getArgumentNumbers()">

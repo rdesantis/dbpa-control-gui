@@ -8,9 +8,10 @@ import { SchedulesComponent } from './schedules/schedules.component';
 import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { JobsComponent } from './jobs/jobs.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/jobs', pathMatch: 'full' },
 
   { path: 'scripts', component: ScriptsComponent },
   { path: 'script-detail/:name', component: ScriptDetailComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'schedule-detail/:name', component: ScheduleDetailComponent },
   { path: 'schedule-edit', component: ScheduleEditComponent },
   { path: 'schedule-edit/:name', component: ScheduleEditComponent },
-  { path: 'jobs', component: JobsComponent }
+  { path: 'jobs', component: JobsComponent },
+  { path: 'job-detail/:name', component: JobDetailComponent }
 ];
 
 @NgModule({

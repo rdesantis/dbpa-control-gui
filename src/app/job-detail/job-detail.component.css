@@ -1,0 +1,6 @@
+#runs tbody.grid-content { height:300px; }
+#runs th.scroll-bar-space { width: 10px; }
+#runs th.run-id, #runs td.run-id { width:55px; }
+#runs th.start-time, #runs td.start-time, th.end-time, #runs td.end-time { width:160px; }
+#runs th.status, #runs td.status { width:120px; }
+#runs th.message, #runs td.message { width:200px; }

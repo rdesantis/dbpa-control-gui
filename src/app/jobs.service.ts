@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { DbpaService } from './dbpa-service';
 import { Job } from './job';
+import { JobRun } from './job-run';
 
 @Injectable()
 export class JobsService extends DbpaService {
@@ -45,7 +46,15 @@ export class JobsService extends DbpaService {
 	  );
 	}
 
-  rename(name: string, newName: string): Observable<any> {
+	getRuns(term: string): Observable<JobRun[]> {
+		return this.http.get<JobRun[]>(`${this.url}/-/runs?like=%25${term}%25&latest=false&ascending=false`)
+		.pipe(
+			tap(_ => this.log(`found jobs matching "${term}"`)),
+			catchError(this.handleError(`jobs.getAll like=%${term}%`, []))
+	  );
+	}
+
+	rename(name: string, newName: string): Observable<any> {
 		return this.http.put(`${this.url}/${name}/rename`, newName, DbpaService.httpOptions).pipe(
 			tap(_ => this.log(`renamed job name=${name} to newName=${newName}`)),
 			catchError(this.handleError<any>(`jobs.rename name=${name} newName=${newName}`))

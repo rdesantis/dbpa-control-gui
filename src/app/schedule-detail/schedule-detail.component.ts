@@ -10,7 +10,7 @@ import { Schedule } from '../schedule';
   styleUrls: ['./schedule-detail.component.css']
 })
 export class ScheduleDetailComponent implements OnInit {
-  @Input() schedule: Schedule;
+  schedule: Schedule;
   originalName: string;
   isRenaming: boolean = false;
   isDeleting: boolean = false;
