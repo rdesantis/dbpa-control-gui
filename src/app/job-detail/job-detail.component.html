@@ -1,6 +1,7 @@
 <div id="actions-bar">
   <a class="actions-breadcrumb" routerLink="/jobs">Jobs</a> > {{ name }}
   <span *ngIf="!isRenaming && !isDeleting">
+    <button class="actions-button" (click)="run()">Run</button>
     <a class="actions-link" routerLink="/job-edit/{{name}}">Edit</a>
     <button class="actions-button" (click)="startRename()">Rename</button>
     <button class="actions-button" (click)="startDelete()">Delete</button>

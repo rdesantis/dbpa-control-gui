@@ -39,6 +39,12 @@ export class JobDetailComponent implements OnInit {
     return LocalDateTime.toString(dateTime);
   }
 
+  run() {
+    // TOD: pass arguments
+    this.jobService.run(this.name, [])
+        .subscribe(_ => this.getRuns());
+  }
+
   startRename(): void {
     this.isRenaming = true;
     document.getElementById("name").focus();

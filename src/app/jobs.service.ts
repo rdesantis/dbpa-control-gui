@@ -8,6 +8,7 @@ import { MessageService } from './message.service';
 import { DbpaService } from './dbpa-service';
 import { Job } from './job';
 import { JobRun } from './job-run';
+import { ScriptArgument } from './script-argument';
 
 @Injectable()
 export class JobsService extends DbpaService {
@@ -51,6 +52,14 @@ export class JobsService extends DbpaService {
 		.pipe(
 			tap(_ => this.log(`found jobs matching "${term}"`)),
 			catchError(this.handleError(`jobs.getAll like=%${term}%`, []))
+	  );
+	}
+
+	run(name: string, args: ScriptArgument[]): Observable<number> {
+		return this.http.post<number>(`${this.url}/-/running/${name}`, args)
+		.pipe(
+			tap(_ => this.log(`starting job "${name}"`)),
+			catchError(this.handleError(`jobs.run name=${name}`, 0))
 	  );
 	}
 

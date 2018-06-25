@@ -24,14 +24,21 @@ export class LocalDateTime {
     }
 
     public static toString(dateTime: number[]): string {
-        if (dateTime.length < 6) {
+        if (dateTime === null || dateTime.length < 6) {
             return "";
         }
         else {
+            let hour: number = this.getHour(dateTime);
+            let am_pm: string = (hour < 12) ? 'AM' : 'PM';
+            if (hour === 0) {
+                hour = 12;
+            }
+            else if (12 < hour) {
+                hour -= 12;
+            }
             let result: string =
-                `${dateTime[0]}-${this.twoDigits(dateTime[1])}-${this.twoDigits(dateTime[2])} ` +
-                `${this.twoDigits(dateTime[3])}:${this.twoDigits(dateTime[4])}:${this.twoDigits(dateTime[5])}`;
-
+                `${this.getYear(dateTime)}-${this.twoDigits(this.getMonth(dateTime))}-${this.twoDigits(this.getDayOfMonth(dateTime))} ` +
+                `${this.twoDigits(hour)}:${this.twoDigits(this.getMinute(dateTime))}:${this.twoDigits(this.getSecond(dateTime))} ${am_pm}`;
             return result;
         }
     }
