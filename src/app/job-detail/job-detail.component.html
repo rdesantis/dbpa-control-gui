@@ -30,6 +30,7 @@
           <th class="run-id">Run ID</th>
           <th class="start-time">Start Time</th>
           <th class="end-time">End Time</th>
+          <th class="duration">Duration</th>
           <th class="status">Status</th>
           <th class="message">Message</th>
           <th class="scroll-bar-space"></th>
@@ -40,6 +41,7 @@
           <td class="run-id">{{run.runId}}</td>
           <td class="start-time">{{formatDateTime(run.state.startTime)}}</td>
           <td class="end-time">{{formatDateTime(run.state.endTime)}}</td>
+          <td class="duration">{{formatDuration(run.state.startTime, run.state.endTime)}}</td>
           <td class="status">{{run.state.status}}</td>
           <td class="message">{{run.state.message}}</td>
         </tr>

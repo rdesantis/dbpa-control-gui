@@ -43,7 +43,28 @@ export class LocalDateTime {
         }
     }
 
+    public static toDate(startDateTime: number[]): Date {
+        return new Date(startDateTime[0], startDateTime[1] - 1, startDateTime[2], startDateTime[3], startDateTime[4], startDateTime[5], startDateTime[6] / 1000000);
+    }
+
+    public static until(startDateTime: number[], endDateTime: number[]): string {
+        let millis: number = this.toDate(endDateTime).getTime() - this.toDate(startDateTime).getTime();
+
+		let seconds: number = Math.floor(millis / 1000);
+		let minutes: number = Math.floor(seconds / 60);
+		let hours: number = Math.floor(minutes / 60);
+		let days: number = Math.floor(hours / 24);
+
+        let result: string =
+                `${days} days ${this.twoDigits(hours % 24)}:${this.twoDigits(minutes % 60)}:${this.twoDigits(seconds % 60)}.${this.digits(3, millis % 1000)}`;
+        return result;
+    }
+
+    private static digits(d: number, i: number): string {
+        return ("000" + i).slice(-d);
+    }
+
     private static twoDigits(i: number): string {
-        return ("0" + i).slice(-2);
+        return this.digits(2, i);
     }
 }

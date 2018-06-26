@@ -39,6 +39,10 @@ export class JobDetailComponent implements OnInit {
     return LocalDateTime.toString(dateTime);
   }
 
+  formatDuration(startDateTime: number[], endDateTime: number[]): string {
+    return LocalDateTime.until(startDateTime, endDateTime);
+  }
+
   run() {
     // TOD: pass arguments
     this.jobService.run(this.name, [])
