@@ -20,6 +20,7 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { JobsService } from './jobs.service';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailComponent } from './job-detail/job-detail.component';
+import { JobEditComponent } from './job-edit/job-edit.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { JobDetailComponent } from './job-detail/job-detail.component';
     ScheduleDetailComponent,
     ScheduleEditComponent,
     JobsComponent,
-    JobDetailComponent
+    JobDetailComponent,
+    JobEditComponent
   ],
   providers: [ MessageService, ScriptsService, SchedulesService, JobsService ],
   bootstrap: [ AppComponent ]
