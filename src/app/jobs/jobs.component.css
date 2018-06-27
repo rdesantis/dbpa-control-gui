@@ -1,4 +1,4 @@
-#jobs tbody.grid-content { height:300px; }
+#jobs tbody.grid-content { height:600px; }
 #jobs th.argument-number { text-align: center; }
 #jobs th.scroll-bar-space { width: 10px; }
 #jobs th.name, #jobs td.name { width:180px; }

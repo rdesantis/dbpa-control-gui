@@ -1,6 +1,6 @@
 /* SchedulesComponent's private CSS styles */
 
-#schedules tbody.grid-content { height:300px; }
+#schedules tbody.grid-content { height:600px; }
 #schedules th.name, #schedules td.name { width:180px; }
 #schedules td.name:hover { position: relative; left: .1em; background-color: lightcyan; }
 #schedules th.body, #schedules td.body { width:320px; }
