@@ -19,40 +19,41 @@
     </datalist>
   </div>
 
-  <div class="margined">
-    <label for="enabled">Enabled</label>
-    <input type="checkbox" id="enabled" [(ngModel)]="job.enabled">
-  </div>
-
-  <div class="panel group margined">
-    <h3>Schedules</h3>
-      <ng-container *ngFor="let i of getScheduleIndexes()">
-        <div class="margined">
-          <input type="text" list="schedule-names" [(ngModel)]="job.scheduleNames[i]">
-          <button class="delete-schedule" title="Remove schedule" (click)="deleteSchedule(i)">x</button>
-        </div>
-      </ng-container>
-      <datalist id="schedule-names">
-        <option *ngFor="let anyScheduleName of allScheduleNames" value={{anyScheduleName}}>
-      </datalist>
-      <div class="margined">
-        <button class="add-schedule" (click)="addSchedule()">Add Schedule</button>
-      </div>
-    </div>
-  
   <div class="panel group margined">
     <h3>Arguments</h3>
-    <div class="argument argument-name argument-header">Name</div><div class="argument argument-value argument-header">Value</div>
-    <ng-container *ngFor="let i of getArgumentIndexes()">
-      <div class="margined">
-        <input type="text" class="argument argument-name" [(ngModel)]="job['arguments'][i].name">
-        <input type="text" class="argument argument-value" [(ngModel)]="job['arguments'][i].value">
-        <button class="delete-argument" title="Remove argument" (click)="deleteArgument(i)">x</button>
-      </div>
+    <ng-container *ngIf="0 < job['arguments'].length">
+      <div class="argument argument-name argument-header">Name</div><div class="argument argument-value argument-header">Value</div>
+      <ng-container *ngFor="let i of getArgumentIndexes()">
+        <div class="margined">
+          <input type="text" class="argument argument-name" [(ngModel)]="job['arguments'][i].name">
+          <input type="text" class="argument argument-value" [(ngModel)]="job['arguments'][i].value">
+          <button class="delete-argument" title="Remove argument" (click)="deleteArgument(i)">x</button>
+        </div>
+      </ng-container>
     </ng-container>
     <div class="margined">
       <button class="add-argument" (click)="addArgument()">Add Argument</button>
     </div>
   </div>
-  
+
+  <div class="panel group margined">
+    <h3>Schedules</h3>
+    <ng-container *ngFor="let i of getScheduleIndexes()">
+      <div class="margined">
+        <input type="text" list="schedule-names" [(ngModel)]="job.scheduleNames[i]">
+        <button class="delete-schedule" title="Remove schedule" (click)="deleteSchedule(i)">x</button>
+      </div>
+    </ng-container>
+    <datalist id="schedule-names">
+      <option *ngFor="let anyScheduleName of allScheduleNames" value={{anyScheduleName}}>
+    </datalist>
+    <div class="margined">
+      <button class="add-schedule" (click)="addSchedule()">Add Schedule</button>
+    </div>
+
+    <div class="margined">
+      <label for="enabled">Enabled</label>
+      <input type="checkbox" id="enabled" [(ngModel)]="job.enabled">
+    </div>
+  </div>
 </div>

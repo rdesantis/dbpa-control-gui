@@ -14,6 +14,7 @@ import { LocalDateTime } from '../local-date-time';
 export class JobDetailComponent implements OnInit {
   originalName: string;
   name: string;
+  job: Job;
   isRenaming: boolean = false;
   isDeleting: boolean = false;
   runs: JobRun[];
@@ -21,17 +22,26 @@ export class JobDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private jobService: JobsService
+    private jobsService: JobsService
   ) {}
 
   ngOnInit(): void {
     this.originalName = this.route.snapshot.paramMap.get('name');
     this.name = this.originalName;
+    this.getJob();
     this.getRuns();
   }
 
+  getJob(): void {
+    this.name = "";
+    this.job = Job.emptyJob();
+    this.name = this.route.snapshot.paramMap.get('name');
+    this.jobsService.get(this.name)
+        .subscribe(job => this.job = job);
+  }
+
   getRuns(): void {
-    this.jobService.getRuns(this.originalName)
+    this.jobsService.getRuns(this.originalName)
         .subscribe(runs => this.runs = runs);
   }
 
@@ -44,8 +54,8 @@ export class JobDetailComponent implements OnInit {
   }
 
   run() {
-    // TOD: pass arguments
-    this.jobService.run(this.name, [])
+    // TODO: pass arguments
+    this.jobsService.run(this.name, [])
         .subscribe(_ => this.getRuns());
   }
 
@@ -57,7 +67,7 @@ export class JobDetailComponent implements OnInit {
 
   saveRename(): void {
     this.isRenaming = false;
-    this.jobService.rename(this.originalName, this.name)
+    this.jobsService.rename(this.originalName, this.name)
         .subscribe(() => this.router.navigate(['/job-detail', this.name]));
   }
 
@@ -71,7 +81,7 @@ export class JobDetailComponent implements OnInit {
   }
 
   doDelete(): void {
-    this.jobService.delete(this.name)
+    this.jobsService.delete(this.name)
         .subscribe(() => this.router.navigate(['/jobs']));
   }
 

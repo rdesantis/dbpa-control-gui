@@ -23,6 +23,11 @@
   </div>
 
   <div class="margined">
+    <label for="script-name">Script</label>
+    <input type="text" id="script-name" [(ngModel)]="job.scriptName" readonly class="read-only">
+  </div>
+
+  <div class="margined">
     Runs
     <table class="grid" id="runs" class="margined">
       <thead class="grid-header">

@@ -48,6 +48,10 @@ export class LocalDateTime {
     }
 
     public static until(startDateTime: number[], endDateTime: number[]): string {
+        if (startDateTime === null || endDateTime === null) {
+            return ``;
+        }
+
         let millis: number = this.toDate(endDateTime).getTime() - this.toDate(startDateTime).getTime();
 
 		let seconds: number = Math.floor(millis / 1000);
