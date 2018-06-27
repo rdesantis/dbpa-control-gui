@@ -66,4 +66,14 @@ export class ScriptsService extends DbpaService {
 			catchError(this.handleError(`scripts.validateAll like=${likeName}`, {}))
 	  );
 	}
+
+	getNames(directory: string, likeName: string): Observable<string[]> {
+		let prefix: string = (directory) ? directory + `/` : ``;
+		let wildName: string = (likeName) ? `*${likeName.trim()}*` : `*`;
+		return this.http.get<string[]>(`${this.url}/-/names?like=${prefix + wildName}`)
+		.pipe(
+			tap(_ => this.log(`fetched script names matching "${likeName}"`)),
+			catchError(this.handleError(`scripts.getNames like=${likeName}`, []))
+	  );
+	}
 }

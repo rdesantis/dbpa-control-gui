@@ -1,0 +1,29 @@
+.group {
+    max-width: 670px;
+    margin-left: 10px;
+    padding: 5px 10px;
+}
+
+/* Also in schedule-edit.component.css; TODO: merge these in styles.css*/
+h3 {
+    margin: 10px 0px 10px 0px;
+    color: #607d8b;
+}
+
+.argument {
+    margin: 0px;
+}
+
+.argument-name {
+    width: 150px;
+}
+.argument-value {
+    width: 200px;
+}
+
+.argument-header {
+    display: inline-block;
+    text-align: center;
+    color: #607d8b;
+    font-weight: bold;
+}

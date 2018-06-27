@@ -51,6 +51,17 @@ export class SchedulesService extends DbpaService {
 	  );
 	}
 
+	getNames(term: string): Observable<string[]> {
+	  if (!term.trim()) {
+			term="";
+	  }
+		return this.http.get<string[]>(`${this.url}/-/names?like=%25${term}%25`)
+		.pipe(
+			tap(_ => this.log(`fetching schedule names matching "${term}"`)),
+			catchError(this.handleError(`schedules.getNames like=%${term}%`, []))
+	  );
+	}
+
 	/** PUT: update the schedule on the server */
 	update(name: string, body: string): Observable<any> {
 	  return this.http.put(`${this.url}/${name}/body`, body, DbpaService.httpOptions).pipe(
