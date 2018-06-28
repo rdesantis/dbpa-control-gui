@@ -107,7 +107,7 @@ export class ScheduleEditComponent implements OnInit {
     this.renderConfig();
   }
 
-  changeDateUnit(dateUnit: DateUnit): void {
+  changeDateUnit(): void {
     this.configBindable.setDateRecurrence(null);
     this.configBindable.setDateMode(RecurrenceMode.recurring);
     this.renderConfig();
