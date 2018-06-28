@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 
 export class DbpaService {
     // If web service is hosted on the same server as static content, managerUrl = 'api'
-    protected static managerUrl: string = 'http://localhost:8080/';  // URL to web api
+    protected static managerUrl: string = 'http://localhost:8080/api/';  // URL to web api
 
     protected static httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
