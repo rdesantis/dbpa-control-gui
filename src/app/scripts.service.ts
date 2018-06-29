@@ -12,7 +12,7 @@ import { ScriptParameter } from './script-parameter';
 @Injectable()
 export class ScriptsService extends DbpaService {
 
-  private url: string = DbpaService.managerUrl + 'scripts';
+  private url: string = DbpaService.getManagerUrl() + 'scripts';
 
   constructor(
 			private http: HttpClient,

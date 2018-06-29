@@ -2,10 +2,14 @@ import { HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { environment } from '../environments/environment';
+
+const managerPath: string = '/api/';
+const devManagerHost: string = 'http://localhost:8080';
+const managerUrl: string = (environment.production ? '' : devManagerHost) + managerPath;
 
 export class DbpaService {
-    // If web service is hosted on the same server as static content, managerUrl = 'api'
-    protected static managerUrl: string = 'http://localhost:8080/api/';  // URL to web api
+    protected static getManagerUrl(): string { return managerUrl; }
 
     protected static httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })

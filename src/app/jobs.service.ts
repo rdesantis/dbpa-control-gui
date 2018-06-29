@@ -13,7 +13,7 @@ import { ScriptArgument } from './script-argument';
 @Injectable()
 export class JobsService extends DbpaService {
 
-  private url: string = DbpaService.managerUrl + 'jobs';
+  private url: string = DbpaService.getManagerUrl() + 'jobs';
 
   constructor(
 			private http: HttpClient,
