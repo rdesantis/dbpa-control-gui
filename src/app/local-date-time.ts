@@ -12,19 +12,23 @@ export class LocalDateTime {
     }
 
     public static getHour(dateTime: number[]): number {
-        return dateTime[3];
+        return (dateTime.length < 4) ? 0 : dateTime[3];
     }
 
     public static getMinute(dateTime: number[]): number {
-        return dateTime[4];
+        return (dateTime.length < 5) ? 0 : dateTime[4];
     }
 
     public static getSecond(dateTime: number[]): number {
-        return dateTime[5];
+        return (dateTime.length < 6) ? 0 : dateTime[5];
+    }
+
+    public static getMs(dateTime: number[]): number {
+        return (dateTime.length < 7) ? 0 : dateTime[6] / 1000000;
     }
 
     public static toString(dateTime: number[]): string {
-        if (dateTime === null || dateTime.length < 6) {
+        if (dateTime === null || dateTime.length < 3) {
             return "";
         }
         else {
@@ -44,8 +48,9 @@ export class LocalDateTime {
     }
 
     public static toDate(dateTime: number[]): Date {
-        let millis : number = (dateTime.length < 7) ? 0 : dateTime[6] / 1000000;
-        return new Date(dateTime[0], dateTime[1] - 1, dateTime[2], dateTime[3], dateTime[4], dateTime[5], millis);
+        return new Date(
+                this.getYear(dateTime), this.getMonth(dateTime) - 1, this.getDayOfMonth(dateTime),
+                this.getHour(dateTime),this.getMinute(dateTime), this.getSecond(dateTime), this.getMs(dateTime));
     }
 
     public static until(startDateTime: number[], endDateTime: number[]): string {
@@ -53,7 +58,7 @@ export class LocalDateTime {
             return ``;
         }
 
-        let hasMilliPrecision: boolean = (startDateTime.length === 7);
+        let hasMilliPrecision: boolean = (startDateTime.length === 7) || (endDateTime.length === 7);
         let millis: number = this.toDate(endDateTime).getTime() - this.toDate(startDateTime).getTime();
 
 		let seconds: number = Math.floor(millis / 1000);
