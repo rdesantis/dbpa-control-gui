@@ -1,6 +1,16 @@
-# AngularTourOfHeroes
+# dbpa-control-gui
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+dbpa-control-gui is a web-based graphical user inteface for controlling dbpa-manage, the Database Process Automation Job Manager.
+(https://github.com/rdesantis/hauldata)
+
+dbpa-manage exposes a RESTful web service API.  In the development environment, dbpa-manage API must be visible to dbpa-control-gui at
+http://localhost:8080/api.  The dbpa-manage server must enable CORS so that dbpa-control-gui can connect from pages served by
+http://localhost:4200/.
+
+In the production environment, dbpa-manage is expected to serve dbpa-control-gui as static content and to expose the API at /api on the same port.
+Therefore CORS is not needed in production.
+
+This project was initially generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server
 
