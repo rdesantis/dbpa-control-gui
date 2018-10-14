@@ -6,7 +6,7 @@ body {
 	margin: 0px;
 }
 
-button, div, input, select, textarea, a.actions-link {
+* {
 	box-sizing: border-box;
 }
 
@@ -48,10 +48,36 @@ button:hover, a.actions-link:hover  {
 	cursor: not-allowed;
 }
 
+/* Styles that logically belong in app.component.css and XXX.component.css but have no effect if placed there */
+
+app-root {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+}
+
+app-scripts, app-script-detail, app-script-edit {
+	flex: 1 1 0;
+
+	display: flex;
+	flex-direction: column;
+}
+
 /* Specific areas of the page */
 
 .app-title, #actions-bar, button, a.actions-link, a.actions-link:visited, .actions-breadcrumb, .actions-breadcrumb:visited, a {
 	color: #607d8b;
+}
+
+.non-scrollable {
+	flex-shrink: 0;
+}
+
+.scrollable {
+	flex: 1 1 0;
+	overflow: auto;
+	white-space: nowrap;
 }
 
 #actions-bar {
@@ -88,10 +114,6 @@ a.actions-link {
 
 .limited-width {
     max-width: 500px;
-}
-
-#work-area {
-	padding: 5px;
 }
 
 .panel {

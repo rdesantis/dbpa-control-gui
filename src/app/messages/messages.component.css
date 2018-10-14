@@ -1,9 +1,6 @@
 /* MessagesComponent's private CSS styles */
 
 #error-panel {
-  display: block;
-  position: fixed;
-  bottom: 0;
   height: 60px;
   background-color: LightYellow;
   overflow: auto;

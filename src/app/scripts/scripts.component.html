@@ -1,11 +1,11 @@
-<div id="actions-bar">Scripts
+<div id="actions-bar" class="non-scrollable">Scripts
   <input type="text" class="actions-filter" (keyup)="setDirectory($event.target.value)" placeholder="Enter directory name">
   <input type="text" class="actions-filter" (keyup)="setFilter($event.target.value)" placeholder="Enter filter value">
   <a class="actions-link" routerLink="/script-edit">Create Script</a>
 </div>
 
-<div id="work-area">
-  <table class="grid" id="scripts" class="margined">
+<div class="non-scrollable">
+  <table class="grid" id="scripts-header" class="margined">
     <thead class="grid-header">
       <tr *ngIf="0 < maxParameters">
         <th colspan="2"></th>
@@ -22,6 +22,11 @@
         <th class="scroll-bar-space"></th>
       </tr>
     </thead>
+  </table>
+</div>
+
+<div class="scrollable">
+  <table class="grid" id="scripts-body" class="margined">
     <tbody class="grid-content">
       <tr *ngFor="let script of scripts">
         <td class="name"><a routerLink="/script-detail/{{getEncodedName(script.name)}}">{{script.name}}</a></td>

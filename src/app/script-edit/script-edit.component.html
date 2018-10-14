@@ -1,22 +1,18 @@
-<div id="actions-bar">
+<div id="actions-bar" class="non-scrollable">
   <a class="actions-breadcrumb" routerLink="/scripts">Scripts</a> >
   <a class="actions-breadcrumb" routerLink="/script-detail/{{originalEncodedName}}" *ngIf="editNotCreate">{{script.name}}</a> {{editNotCreate?' > Edit':' Create'}}
   <button class="actions-button" (click)="save()">Save</button>
   <button class="actions-button" (click)="reset()">Discard Changes</button>
 </div>
 
-<div id="work-area">
-  <div class="margined">
-    <label for="name">Name</label>
-    <input type="text" id="name" [(ngModel)]="script.name" [readonly]="editNotCreate" [ngClass]="editNotCreate?'read-only':''" autofocus>
-  </div>
-
-  <div class="margined">
-    <span>Definition</span>
+<div class="non-scrollable margined">
+  <label for="name">Name</label>
+  <input type="text" id="name" [(ngModel)]="script.name" [readonly]="editNotCreate" [ngClass]="editNotCreate?'read-only':''" autofocus>
+  <div>Definition
     <button (click)="clear()">Clear definition</button>
-    <div class="panel definition-panel margined">
-      <textarea id="definition" [(ngModel)]="script.body" placeholder="Enter script definition" (keyup)="validate()" (keydown)="key($event)" wrap="off"></textarea>
-    </div>
-    <div id="validation" class="panel definition-panel margined" *ngIf="!script.validation.valid">{{script.validation.validationMessage}}</div>
   </div>
 </div>
+
+<textarea id="definition" class="scrollable margined" [(ngModel)]="script.body" placeholder="Enter script definition" (keyup)="validate()" (keydown)="key($event)" wrap="off"></textarea>
+
+<div id="validation" class="non-scrollable panel definition-panel margined" *ngIf="!script.validation.valid">{{script.validation.validationMessage}}</div>
