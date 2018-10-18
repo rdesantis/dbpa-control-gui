@@ -1,13 +1,11 @@
-<div id="actions-bar">Schedules
+<div id="actions-bar" class="non-scrollable">Schedules
   <input type="text" class="actions-filter" (keyup)="applyFilter($event.target.value)" placeholder="Enter filter value">
   <a class="actions-link" routerLink="/schedule-edit">Create Schedule</a>
 </div>
 
-<div id="work-area">
+<div class="horizontal-scrollable">
   <table class="grid" id="schedules" class="margined">
-    <!--col style="width:50%"><col style="width:50%"-->
     <thead class="grid-header">
-      <!--tr><th style="width:200px">Name</th><th style="width:240px">Definition</th></tr-->
       <tr>
         <th class="name">Name</th>
         <th class="body">Definition</th>
@@ -15,8 +13,8 @@
     </thead>
     <tbody class="grid-content">
       <tr *ngFor="let schedule of schedules">
-        <td class="name"><a routerLink="/schedule-detail/{{schedule.name}}">{{schedule.name}}</a></td>
-        <td class="body">{{schedule.body}}</td>
+        <td><div class="name"><a routerLink="/schedule-detail/{{schedule.name}}">{{schedule.name}}</a></div></td>
+        <td><div class="body">{{schedule.body}}</div></td>
       </tr>
     </tbody>
   </table>

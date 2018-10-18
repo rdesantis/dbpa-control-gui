@@ -4,8 +4,8 @@
   <a class="actions-link" routerLink="/script-edit">Create Script</a>
 </div>
 
-<div class="non-scrollable">
-  <table class="grid" id="scripts-header" class="margined">
+<div class="horizontal-scrollable">
+  <table class="grid" id="scripts" class="margined">
     <thead class="grid-header">
       <tr *ngIf="0 < maxParameters">
         <th colspan="2"></th>
@@ -22,18 +22,13 @@
         <th class="scroll-bar-space"></th>
       </tr>
     </thead>
-  </table>
-</div>
-
-<div class="scrollable">
-  <table class="grid" id="scripts-body" class="margined">
     <tbody class="grid-content">
       <tr *ngFor="let script of scripts">
-        <td class="name"><a routerLink="/script-detail/{{getEncodedName(script.name)}}">{{script.name}}</a></td>
-        <td class="valid">{{script.validation.valid?'Yes':'No'}}</td>
+        <td><div class="name"><a routerLink="/script-detail/{{getEncodedName(script.name)}}">{{script.name}}</a></div></td>
+        <td><div class="valid">{{script.validation.valid?'Yes':'No'}}</div></td>
         <ng-container *ngFor="let parameter of script.validation.parameters">
-          <td class="parameter-name">{{parameter.name}}</td>
-          <td class="parameter-type">{{parameter.typeName}}</td>
+          <td><div class="parameter-name">{{parameter.name}}</div></td>
+          <td><div class="parameter-type">{{parameter.typeName}}</div></td>
         </ng-container>
       </tr>
     </tbody>

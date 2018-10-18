@@ -1,7 +1,7 @@
-#scripts-header th.parameter-number { text-align: center; }
-#scripts-header th.scroll-bar-space { width: 10px; }
-#scripts-header th.name, #scripts-body td.name { width:180px; }
-#scripts-body td.name:hover { position: relative; left: .1em; background-color: lightcyan; }
-#scripts-header th.valid, #scripts-body td.valid { width:50px; }
-#scripts-header th.parameter-name, #scripts-body td.parameter-name { width:100px; }
-#scripts-header th.parameter-type, #scripts-body td.parameter-type { width:80px; }
+#scripts th.parameter-number { text-align: center; }
+#scripts th.scroll-bar-space { width: 10px; }
+#scripts .name { width:180px; }
+#scripts td.name:hover { position: relative; left: .1em; background-color: lightcyan; }
+#scripts .valid { width:50px; }
+#scripts .parameter-name { width:100px; }
+#scripts .parameter-type { width:80px; }

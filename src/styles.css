@@ -48,7 +48,7 @@ button:hover, a.actions-link:hover  {
 	cursor: not-allowed;
 }
 
-/* Styles that logically belong in app.component.css and XXX.component.css but have no effect if placed there */
+/* Styles that logically belong in *.component.css but have no effect if placed there */
 
 app-root {
 	display: flex;
@@ -57,7 +57,8 @@ app-root {
 	width: 100vw;
 }
 
-app-scripts, app-script-detail, app-script-edit {
+app-scripts, app-script-detail, app-script-edit,
+app-schedules, app-schedule-detail, app-schedule-edit {
 	flex: 1 1 0;
 
 	display: flex;
@@ -78,6 +79,11 @@ app-scripts, app-script-detail, app-script-edit {
 	flex: 1 1 0;
 	overflow: auto;
 	white-space: nowrap;
+}
+
+.horizontal-scrollable {
+	flex: 1 1 0;
+	overflow-x: auto;
 }
 
 #actions-bar {
@@ -128,10 +134,8 @@ a.actions-link {
 .grid {
     border: thin solid rgba(0, 0, 0, 0.12);
     border-collapse: collapse;
-}
 
-thead.grid-header {
-    display: block;
+	overflow-y: auto;
 }
 
 thead.grid-header th {
@@ -142,12 +146,17 @@ thead.grid-header th {
 	border-top: 1px solid white;
 	font-weight: normal;
 	padding: 4px 3px;
-	text-align: left
+	text-align: left;
 }
 
-tbody.grid-content {
-	display: block;
-	overflow: auto;
+thead.grid-header tr:first-child th {
+	position: sticky;
+	top: 2px;
+}
+
+thead.grid-header tr:nth-child(2) th {
+	position: sticky;
+	top: 32px;
 }
 
 tbody.grid-content td {
