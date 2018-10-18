@@ -24,7 +24,7 @@
       <tr *ngFor="let script of scripts">
         <td><div class="name"><a routerLink="/script-detail/{{getEncodedName(script.name)}}">{{script.name}}</a></div></td>
         <td><div class="valid">{{script.validation.valid?'Yes':'No'}}</div></td>
-        <ng-container *ngFor="let parameter of script.validation.parameters">
+        <ng-container *ngFor="let parameter of getParameters(script.validation, maxParameters)">
           <td><div class="parameter-name">{{parameter.name}}</div></td>
           <td><div class="parameter-type">{{parameter.typeName}}</div></td>
         </ng-container>

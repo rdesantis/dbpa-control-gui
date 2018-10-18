@@ -32,7 +32,7 @@
           </ng-container>
         </div></td>
         <td><div class="enabled">{{jobWithName.job.enabled?'Yes':'No'}}</div></td>
-        <ng-container *ngFor="let argument of jobWithName.getArguments()">
+        <ng-container *ngFor="let argument of jobWithName.getArguments(maxArguments)">
           <td><div class="argument-name">{{argument.name}}</div></td>
           <td><div class="argument-value">{{argument.value}}</div></td>
         </ng-container>

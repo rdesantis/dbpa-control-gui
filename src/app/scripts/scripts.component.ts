@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Script } from '../script';
 import { ScriptsService } from '../scripts.service';
+import { ScriptValidation } from '../script-validation';
+import { ScriptParameter } from '../script-parameter';
 
 @Component({
   selector: 'app-scripts',
@@ -53,6 +55,14 @@ export class ScriptsComponent implements OnInit {
 
   getParameterNumbers(): number[] {
     return Array.from(Array(this.maxParameters).keys());
+  }
+
+  getParameters(validation: ScriptValidation, fillTo: number): ScriptParameter[] {
+    let result: ScriptParameter[] = validation.parameters.slice(0);
+    let actualLength: number = result.length;
+    result.length = fillTo;
+    result.fill({name: "", typeName: ""}, actualLength, fillTo);
+    return result;
   }
 
   getEncodedName(name: string): string {
