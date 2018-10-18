@@ -5,12 +5,11 @@
 </div>
 
 <div class="horizontal-scrollable">
-  <table class="grid" id="scripts" class="margined">
-    <thead class="grid-header">
+  <table class="grid" id="scripts">
+    <thead>
       <tr *ngIf="0 < maxParameters">
         <th colspan="2"></th>
         <th colspan="2" class="parameter-number" *ngFor="let parameterNumber of getParameterNumbers()">Parameter {{parameterNumber + 1}}</th>
-        <th class="scroll-bar-space"></th>
       </tr>
       <tr>
         <th class="name">Name</th>
@@ -19,10 +18,9 @@
           <th class="parameter-name">Name</th>
           <th class="parameter-type">Type</th>
         </ng-container>
-        <th class="scroll-bar-space"></th>
       </tr>
     </thead>
-    <tbody class="grid-content">
+    <tbody>
       <tr *ngFor="let script of scripts">
         <td><div class="name"><a routerLink="/script-detail/{{getEncodedName(script.name)}}">{{script.name}}</a></div></td>
         <td><div class="valid">{{script.validation.valid?'Yes':'No'}}</div></td>

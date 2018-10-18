@@ -33,8 +33,8 @@
 </div>
 
 <div class="horizontal-scrollable">
-  <table class="grid" id="runs" class="margined">
-    <thead class="grid-header">
+  <table class="grid" id="runs">
+    <thead>
       <tr>
         <th class="run-id">Run ID</th>
         <th class="start-time">Start Time</th>
@@ -42,10 +42,9 @@
         <th class="duration">Duration</th>
         <th class="status">Status</th>
         <th class="message">Message</th>
-        <th class="scroll-bar-space"></th>
       </tr>
     </thead>
-    <tbody class="grid-content">
+    <tbody>
       <tr *ngFor="let run of runs">
         <td><div class="run-id">{{run.runId}}</div></td>
         <td><div class="start-time">{{formatDateTime(run.state.startTime)}}</div></td>

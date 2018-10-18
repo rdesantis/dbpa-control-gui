@@ -4,14 +4,14 @@
 </div>
 
 <div class="horizontal-scrollable">
-  <table class="grid" id="schedules" class="margined">
-    <thead class="grid-header">
+  <table class="grid" id="schedules">
+    <thead>
       <tr>
         <th class="name">Name</th>
         <th class="body">Definition</th>
       </tr>
     </thead>
-    <tbody class="grid-content">
+    <tbody>
       <tr *ngFor="let schedule of schedules">
         <td><div class="name"><a routerLink="/schedule-detail/{{schedule.name}}">{{schedule.name}}</a></div></td>
         <td><div class="body">{{schedule.body}}</div></td>

@@ -1,5 +1,4 @@
 #jobs th.argument-number { text-align: center; }
-#jobs th.scroll-bar-space { width: 10px; }
 #jobs .name { width:180px; }
 #jobs .script { width:180px; }
 #jobs td.name:hover, #jobs td.script:hover { position: relative; left: .1em; background-color: lightcyan; }

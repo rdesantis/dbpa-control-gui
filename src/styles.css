@@ -132,39 +132,34 @@ a.actions-link {
 
 /* Tables */
 
-.grid {
+table.grid {
     border: thin solid rgba(0, 0, 0, 0.12);
     border-collapse: collapse;
 
 	overflow-y: auto;
 }
 
-thead.grid-header th {
-    color: white;
+table.grid th {
+	color: white;
 	background-color: #607d8b;
-	border-left: 1px solid white;
-	border-right: 1px solid white;
-	border-top: 1px solid white;
+	border: 1px solid white;
 	font-weight: normal;
 	padding: 4px 3px;
 	text-align: left;
 }
 
-thead.grid-header tr:first-child th {
+table.grid tr:first-child th {
 	position: sticky;
-	top: 2px;
+	top: 1px;
 }
 
-thead.grid-header tr:nth-child(2) th {
+table.grid tr:nth-child(2) th {
 	position: sticky;
-	top: 32px;
+	top: 28px;
 }
 
-tbody.grid-content td {
+table.grid td {
 	background: #FFF;
-	border-bottom: none;
-	border-left: none;
-	border-right: 1px solid #CCC;
-	border-top: 1px solid #DDD;
+	border: 1px solid #CCC;
 	padding: 2px 3px 3px 4px
 }

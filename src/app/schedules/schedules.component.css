@@ -1,5 +1,3 @@
-/* SchedulesComponent's private CSS styles */
-
 #schedules .name { width:180px; }
 #schedules td.name:hover { position: relative; left: .1em; background-color: lightcyan; }
 #schedules .body { width:640px; }
