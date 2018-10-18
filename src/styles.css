@@ -58,7 +58,8 @@ app-root {
 }
 
 app-scripts, app-script-detail, app-script-edit,
-app-schedules, app-schedule-detail, app-schedule-edit {
+app-schedules, app-schedule-detail, app-schedule-edit,
+app-jobs, app-job-detail, app-job-edit {
 	flex: 1 1 0;
 
 	display: flex;

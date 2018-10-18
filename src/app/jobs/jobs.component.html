@@ -3,7 +3,7 @@
   <a class="actions-link" routerLink="/job-edit">Create Job</a>
 </div>
 
-<div id="work-area">
+<div class="horizontal-scrollable">
   <table class="grid" id="jobs" class="margined">
     <thead class="grid-header">
       <tr *ngIf="0 < maxArguments">
@@ -25,18 +25,18 @@
     </thead>
     <tbody class="grid-content">
       <tr *ngFor="let jobWithName of jobsWithNames">
-        <td class="name"><a routerLink="/job-detail/{{jobWithName.name}}">{{jobWithName.name}}</a></td>
-        <td class="script"><a routerLink="/script-detail/{{jobWithName.job.scriptName}}">{{jobWithName.job.scriptName}}</a></td>
-        <td class="schedules">
+        <td><div class="name"><a routerLink="/job-detail/{{jobWithName.name}}">{{jobWithName.name}}</a></div></td>
+        <td><div class="script"><a routerLink="/script-detail/{{jobWithName.job.scriptName}}">{{jobWithName.job.scriptName}}</a></div></td>
+        <td><div class="schedules">
           <ng-container *ngFor="let scheduleName of jobWithName.job.scheduleNames; let i=index">
             <ng-container *ngIf="0 < i">, </ng-container>
             <a routerLink="/schedule-detail/{{scheduleName}}">{{scheduleName}}</a>
           </ng-container>
-        </td>
-        <td class="enabled">{{jobWithName.job.enabled?'Yes':'No'}}</td>
+        </div></td>
+        <td><div class="enabled">{{jobWithName.job.enabled?'Yes':'No'}}</div></td>
         <ng-container *ngFor="let argument of jobWithName.getArguments()">
-          <td class="argument-name">{{argument.name}}</td>
-          <td class="argument-value">{{argument.value}}</td>
+          <td><div class="argument-name">{{argument.name}}</div></td>
+          <td><div class="argument-value">{{argument.value}}</div></td>
         </ng-container>
       </tr>
     </tbody>

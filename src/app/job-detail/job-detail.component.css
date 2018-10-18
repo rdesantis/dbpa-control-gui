@@ -1,7 +1,6 @@
-#runs tbody.grid-content { height:600px; }
 #runs th.scroll-bar-space { width: 10px; }
-#runs th.run-id, #runs td.run-id { width:55px; }
-#runs th.start-time, #runs td.start-time, th.end-time, #runs td.end-time { width:180px; }
-#runs th.duration, #runs td.duration { width:150px; }
-#runs th.status, #runs td.status { width:140px; }
-#runs th.message, #runs td.message { width:200px; }
+#runs .run-id { width:55px; }
+#runs .start-time, #runs .end-time { width:180px; }
+#runs .duration { width:150px; }
+#runs .status { width:140px; }
+#runs .message { width:200px; }

@@ -1,10 +1,9 @@
-#jobs tbody.grid-content { height:600px; }
 #jobs th.argument-number { text-align: center; }
 #jobs th.scroll-bar-space { width: 10px; }
-#jobs th.name, #jobs td.name { width:180px; }
-#jobs th.script, #jobs td.script { width:180px; }
+#jobs .name { width:180px; }
+#jobs .script { width:180px; }
 #jobs td.name:hover, #jobs td.script:hover { position: relative; left: .1em; background-color: lightcyan; }
-#jobs th.schedules, #jobs td.schedules { width:180px; }
-#jobs th.enabled, #jobs td.enabled { width:70px; }
-#jobs th.argument-name, #jobs td.argument-name { width:100px; }
-#jobs th.argument-value, #jobs td.argument-value { width:80px; }
+#jobs .schedules { width:180px; }
+#jobs .enabled { width:70px; }
+#jobs .argument-name { width:100px; }
+#jobs .argument-value { width:80px; }
