@@ -31,7 +31,7 @@ export class JobsComponent implements OnInit {
     this.jobsService.getAll(this.filter)
         .subscribe(map => {
           this.jobsWithNames = [];
-          for (let property in map) {
+          for (let property of Object.keys(map).sort()) {
             this.jobsWithNames.push(new JobWithName(property, map[property]));
           }
           this.setMaxArguments();
