@@ -1,8 +1,8 @@
 #jobs th.argument-number { text-align: center; }
-#jobs .name { width:180px; }
-#jobs .script { width:180px; }
+#jobs .name { width:300px; }
+#jobs .script { width:300px; }
 #jobs td.name:hover, #jobs td.script:hover { position: relative; left: .1em; background-color: lightcyan; }
-#jobs .schedules { width:180px; }
+#jobs .schedules { width:300px; }
 #jobs .enabled { width:70px; }
-#jobs .argument-name { width:100px; }
-#jobs .argument-value { width:80px; }
+#jobs .argument-name { width:135px; }
+#jobs .argument-value { width:130px; }
