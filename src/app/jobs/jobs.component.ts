@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { JobWithName } from '../job-with-name';
 import { JobsService } from '../jobs.service';
+import { ScriptArgument } from '../script-argument';
 
 @Component({
   selector: 'app-jobs',
@@ -48,4 +49,12 @@ export class JobsComponent implements OnInit {
   getArgumentNumbers(): number[] {
     return Array.from(Array(this.maxArguments).keys());
   }
+
+  getArgumentsPadded(jobWithName: JobWithName): ScriptArgument[] {
+      let result: ScriptArgument[] = jobWithName.job["arguments"].slice(0);
+      let actualLength: number = result.length;
+      result.length = this.maxArguments;
+      result.fill({name: "", value: ""}, actualLength, this.maxArguments);
+      return result;
+    }
 }

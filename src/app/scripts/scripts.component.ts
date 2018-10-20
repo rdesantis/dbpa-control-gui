@@ -57,16 +57,15 @@ export class ScriptsComponent implements OnInit {
     return Array.from(Array(this.maxParameters).keys());
   }
 
-  getParameters(validation: ScriptValidation, fillTo: number): ScriptParameter[] {
+  getParametersPadded(validation: ScriptValidation): ScriptParameter[] {
     let result: ScriptParameter[] = validation.parameters.slice(0);
     let actualLength: number = result.length;
-    result.length = fillTo;
-    result.fill({name: "", typeName: ""}, actualLength, fillTo);
+    result.length = this.maxParameters;
+    result.fill({name: "", typeName: ""}, actualLength, this.maxParameters);
     return result;
   }
 
   getEncodedName(name: string): string {
     return encodeURIComponent(name);
   }
-
 }
