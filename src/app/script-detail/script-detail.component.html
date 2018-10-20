@@ -15,10 +15,14 @@
   </span>
 </div>
 
-<div class="non-scrollable margined">
-  <label for="name">Name</label>
-  <input type="text" id="name" [(ngModel)]="script.name" [readonly]="!isRenaming" [ngClass]="!isRenaming?'read-only':''">
-  <div>Definition</div>
+<div class="non-scrollable">
+  <div class="margined">
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="script.name" [readonly]="!isRenaming" [ngClass]="!isRenaming?'read-only':''">
+  </div>
+  <div class="margined">
+    Definition
+  </div>
 </div>
 
 <textarea id="definition" [(ngModel)]="script.body" placeholder="Definition" readonly="true" class="scrollable read-only margined" wrap="off"></textarea>
