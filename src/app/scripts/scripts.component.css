@@ -1,6 +1,6 @@
 #scripts th.parameter-number { text-align: center; }
-#scripts .name { width:350px; }
+#scripts .name { max-width:350px; }
 #scripts td.name:hover { position: relative; left: .1em; background-color: lightcyan; }
 #scripts .valid { width:50px; }
-#scripts .parameter-name { width:170px; }
+#scripts .parameter-name { max-width:170px; }
 #scripts .parameter-type { width:85px; }
