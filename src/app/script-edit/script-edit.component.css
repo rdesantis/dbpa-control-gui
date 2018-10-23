@@ -1,5 +1,7 @@
 /* Copied to script-detail.component.css */
 
+#name { width:320px; }
+
 #definition {
     padding: 5px;
 }

@@ -1,5 +1,7 @@
 /* Duplicated from schedule-edit.component.css */
 
+#name { width:320px; }
+
 .schedule-mode-config {
     max-width: 670px;
     margin-left: 10px;
