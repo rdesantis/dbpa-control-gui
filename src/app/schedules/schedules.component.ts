@@ -22,7 +22,7 @@ export class SchedulesComponent implements OnInit {
     this.scheduleService.getAll()
         .subscribe(schedules => {
           this.schedules = [];
-          for (let property in schedules) {
+          for (let property of Object.keys(schedules).sort()) {
             this.schedules.push({name: property, body: schedules[property]});
           }
         });
