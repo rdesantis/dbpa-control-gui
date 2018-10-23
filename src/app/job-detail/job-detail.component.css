@@ -1,3 +1,6 @@
+#name { width:320px; }
+#script-name { width:320px; }
+
 #runs .run-id { width:55px; }
 #runs .start-time, #runs .end-time { width:180px; }
 #runs .duration { width:150px; }
