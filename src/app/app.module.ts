@@ -21,6 +21,7 @@ import { JobsService } from './jobs.service';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { JobEditComponent } from './job-edit/job-edit.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { JobEditComponent } from './job-edit/job-edit.component';
     ScheduleEditComponent,
     JobsComponent,
     JobDetailComponent,
-    JobEditComponent
+    JobEditComponent,
+    AdminComponent
   ],
   providers: [ MessageService, ScriptsService, SchedulesService, JobsService ],
   bootstrap: [ AppComponent ]

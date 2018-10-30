@@ -1,9 +1,9 @@
-<div id="actions-bar" class="non-scrollable">Schedules
+<div id="actions-bar" class="fixed-height">Schedules
   <input type="text" class="actions-filter" (keyup)="applyFilter($event.target.value)" placeholder="Enter filter value">
   <a class="actions-link" routerLink="/schedule-edit">Create Schedule</a>
 </div>
 
-<div class="horizontal-scrollable margined">
+<div class="flex-height-hscroll margined">
   <table class="grid" id="schedules">
     <thead>
       <tr>

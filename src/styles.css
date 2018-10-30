@@ -54,6 +54,58 @@ button:hover, a.actions-link:hover  {
 	cursor: not-allowed;
 }
 
+.stack {
+	display: flex;
+	flex-direction: column;
+}
+
+.fixed-height {
+	flex-shrink: 0;
+}
+
+.flex-height {
+	flex: 1 1 0;
+	overflow: auto;
+	white-space: nowrap;
+}
+
+.flex-height-hscroll {
+	flex: 1 1 0;
+	overflow-x: auto;
+}
+
+.sequence {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+/*	flex-flow: row wrap;*/ /* Moves the scroll bar out on Edge */
+/*	align-items: flex-start;*/ /* Moves the scroll bar out on Chrome and Edge */
+}
+
+.sequence > * {
+	flex-shrink: 0;
+	margin-top: 15px;
+	margin-left: 10px;
+	margin-right: 25px;
+	overflow-x: auto;
+}
+
+.centered {
+	align-items: center;
+}
+
+.controls > div {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.controls > div > * {
+	flex-shrink: 0;
+	margin: 5px 10px;
+}
+
 /* Styles that logically belong in *.component.css but have no effect if placed there */
 
 app-root {
@@ -65,7 +117,8 @@ app-root {
 
 app-scripts, app-script-detail, app-script-edit,
 app-schedules, app-schedule-detail, app-schedule-edit,
-app-jobs, app-job-detail, app-job-edit {
+app-jobs, app-job-detail, app-job-edit,
+app-admin {
 	flex: 1 1 0;
 
 	display: flex;
@@ -76,21 +129,6 @@ app-jobs, app-job-detail, app-job-edit {
 
 .app-title, #actions-bar, button, a.actions-link, a.actions-link:visited, .actions-breadcrumb, .actions-breadcrumb:visited, a {
 	color: #607d8b;
-}
-
-.non-scrollable {
-	flex-shrink: 0;
-}
-
-.scrollable {
-	flex: 1 1 0;
-	overflow: auto;
-	white-space: nowrap;
-}
-
-.horizontal-scrollable {
-	flex: 1 1 0;
-	overflow-x: auto;
 }
 
 #actions-bar {

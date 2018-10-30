@@ -10,6 +10,7 @@ import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { JobEditComponent } from './job-edit/job-edit.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/jobs', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'job-detail/:name', component: JobDetailComponent },
   { path: 'job-edit', component: JobEditComponent },
   { path: 'job-edit/:name', component: JobEditComponent },
+  { path: 'admin', component: AdminComponent },
 ];
 
 @NgModule({

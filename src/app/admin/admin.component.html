@@ -1,0 +1,76 @@
+<div class="fixed-height controls">
+  <div>
+    <label for="status-time">Status as of</label>
+    <input type="text" id="status-time" readonly="true">
+  </div>
+
+  <div>
+    <label for="service-status">Service Status</label>
+    <input type="text" id="service-status" readonly="true">
+    <button>Stop</button>
+  </div>
+
+  <div>
+    <label for="manager-status">Manager Status</label>
+    <input type="text" id="manager-status" readonly="true">
+    <button>Start</button>
+    <button>Stop</button>
+  </div>
+
+  <div>
+    <label for="manager-status">Database Schema</label>
+    <input type="text" id="database-schema" readonly="true">
+    <button>Create</button>
+    <button>Delete</button>
+  </div>
+</div>
+
+<div class="flex-height sequence">
+  <div class="stack centered">
+    <div class="fixed-height">Running Jobs</div>
+    <div class="flex-height">
+      <table class="grid">
+        <thead>
+          <tr>
+            <th>Job Name</th>
+            <th>Start Time</th> 
+            <th>Elapsed</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jill</td>
+            <td>Smith</td> 
+            <td>12345</td>
+            <td>Stop</td>
+          </tr>
+          <tr>
+            <td>Eve</td>
+            <td>Jackson</td> 
+            <td>94444</td>
+            <td>Stop</td>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+  </div>
+
+  <div class="stack centered">
+    <div class="fixed-height">Running Schedules</div>
+    <div class="flex-height">
+      <table class="grid">
+        <thead>
+          <tr>
+            <th>Schedule Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr>
+          <tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr>
+          <tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr>
+        </tbody>
+      </table> 
+    </div>
+  </div>
+</div>

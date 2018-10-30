@@ -1,9 +1,9 @@
-<div id="actions-bar">Jobs
+<div id="actions-bar" class="fixed-height">Jobs
   <input type="text" class="actions-filter" (keyup)="setFilter($event.target.value)" placeholder="Enter filter value">
   <a class="actions-link" routerLink="/job-edit">Create Job</a>
 </div>
 
-<div class="horizontal-scrollable margined">
+<div class="flex-height-hscroll margined">
   <table class="grid" id="jobs">
     <thead>
       <tr *ngIf="0 < maxArguments">

@@ -1,4 +1,4 @@
-<div id="actions-bar" class="non-scrollable">
+<div id="actions-bar" class="fixed-height">
   <a class="actions-breadcrumb" routerLink="/scripts">Scripts</a> > {{ script.name }}
   <span *ngIf="!isRenaming && !isDeleting">
     <a class="actions-link" routerLink="/script-edit/{{originalEncodedName}}">Edit</a>
@@ -15,7 +15,7 @@
   </span>
 </div>
 
-<div class="non-scrollable">
+<div class="fixed-height">
   <div class="margined">
     <label for="name">Name</label>
     <input type="text" id="name" [(ngModel)]="script.name" [readonly]="!isRenaming" [ngClass]="!isRenaming?'read-only':''">
@@ -25,4 +25,4 @@
   </div>
 </div>
 
-<textarea id="definition" [(ngModel)]="script.body" placeholder="Definition" readonly="true" class="scrollable read-only margined" wrap="off"></textarea>
+<textarea id="definition" [(ngModel)]="script.body" placeholder="Definition" readonly="true" class="flex-height read-only margined" wrap="off"></textarea>

@@ -1,4 +1,4 @@
-<div id="actions-bar">
+<div id="actions-bar" class="fixed-height">
   <a class="actions-breadcrumb" routerLink="/schedules">Schedules</a> > {{ schedule.name }}
   <span *ngIf="!isRenaming && !isDeleting">
     <a class="actions-link" routerLink="/schedule-edit/{{schedule.name}}">Edit</a>
@@ -15,7 +15,7 @@
   </span>
 </div>
 
-<div id="work-area">
+<div class="fixed-height">
   <div class="margined">
     <label for="name">Name</label>
     <input type="text" id="name" [(ngModel)]="schedule.name" [readonly]="!isRenaming" [ngClass]="!isRenaming?'read-only':''">

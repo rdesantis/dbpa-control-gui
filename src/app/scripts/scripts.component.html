@@ -1,10 +1,10 @@
-<div id="actions-bar" class="non-scrollable">Scripts
+<div id="actions-bar" class="fixed-height">Scripts
   <input type="text" class="actions-filter" (keyup)="setDirectory($event.target.value)" placeholder="Enter directory name">
   <input type="text" class="actions-filter" (keyup)="setFilter($event.target.value)" placeholder="Enter filter value">
   <a class="actions-link" routerLink="/script-edit">Create Script</a>
 </div>
 
-<div class="horizontal-scrollable margined">
+<div class="flex-height-hscroll margined">
   <table class="grid" id="scripts">
     <thead>
       <tr *ngIf="0 < maxParameters">

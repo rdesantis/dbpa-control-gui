@@ -16,7 +16,7 @@
   </span>
 </div>
 
-<div id="non-scrollable">
+<div id="fixed-height">
   <div class="margined">
     <label for="name">Name</label>
     <input type="text" id="name" [(ngModel)]="name" [readonly]="!isRenaming" [ngClass]="!isRenaming?'read-only':''">
@@ -30,7 +30,7 @@
   <div class="margined">Runs</div>
 </div>
 
-<div class="horizontal-scrollable margined">
+<div class="flex-height-hscroll margined">
   <table class="grid" id="runs">
     <thead>
       <tr>
