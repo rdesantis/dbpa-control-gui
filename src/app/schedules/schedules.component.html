@@ -1,5 +1,5 @@
 <div id="actions-bar" class="fixed-height">Schedules
-  <input type="text" class="actions-filter" (keyup)="applyFilter($event.target.value)" placeholder="Enter filter value">
+  <input type="text" class="actions-filter" (keyup)="getSchedules($event.target.value)" placeholder="Enter filter value">
   <a class="actions-link" routerLink="/schedule-edit">Create Schedule</a>
 </div>
 

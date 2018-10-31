@@ -12,7 +12,6 @@ import { ScriptArgument } from '../script-argument';
 export class JobsComponent implements OnInit {
 
   jobsWithNames: JobWithName[];
-  filter: string = "";
 
   maxArguments: number = 0;
 
@@ -22,13 +21,11 @@ export class JobsComponent implements OnInit {
     this.getJobs();
   }
 
-  setFilter(filter: string) {
-    this.filter = filter.trim();;
-    this.getJobs();
-  }
-
-  getJobs() {
-    this.jobsService.getAll(this.filter)
+  getJobs(filterValue?: string) {
+	  if (filterValue) {
+			filterValue = `%${filterValue.trim()}%`;  // Remove leading & trailing whitespace, add wildcards
+	  }
+    this.jobsService.getAll(filterValue)
         .subscribe(map => {
           this.jobsWithNames = [];
           for (let property of Object.keys(map).sort()) {

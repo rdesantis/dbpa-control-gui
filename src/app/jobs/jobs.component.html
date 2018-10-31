@@ -1,5 +1,5 @@
 <div id="actions-bar" class="fixed-height">Jobs
-  <input type="text" class="actions-filter" (keyup)="setFilter($event.target.value)" placeholder="Enter filter value">
+  <input type="text" class="actions-filter" (keyup)="getJobs($event.target.value)" placeholder="Enter filter value">
   <a class="actions-link" routerLink="/job-edit">Create Job</a>
 </div>
 

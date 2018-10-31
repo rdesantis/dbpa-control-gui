@@ -18,22 +18,14 @@ export class SchedulesComponent implements OnInit {
     this.getSchedules();
   }
 
-  getSchedules(): void {
-    this.scheduleService.getAll()
+  getSchedules(filterValue?: string) {
+	  if (filterValue) {
+			filterValue = `%${filterValue.trim()}%`;  // Remove leading & trailing whitespace, add wildcards
+	  }
+    this.scheduleService.getAll(filterValue)
         .subscribe(schedules => {
           this.schedules = [];
           for (let property of Object.keys(schedules).sort()) {
-            this.schedules.push({name: property, body: schedules[property]});
-          }
-        });
-  }
-
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    this.scheduleService.search(filterValue)
-        .subscribe(schedules => {
-          this.schedules = [];
-          for (let property in schedules) {
             this.schedules.push({name: property, body: schedules[property]});
           }
         });
