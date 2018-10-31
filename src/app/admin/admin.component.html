@@ -32,24 +32,20 @@
       <table class="grid">
         <thead>
           <tr>
-            <th>Job Name</th>
-            <th>Start Time</th> 
-            <th>Elapsed</th>
-            <th>Action</th>
+            <th class="run-id">Run ID</th>
+            <th class="job-name">Job Name</th>
+            <th class="start-time">Start Time</th>
+            <th class="elapsed">Elapsed</th>
+            <th class="job-action">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Jill</td>
-            <td>Smith</td> 
-            <td>12345</td>
-            <td>Stop</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td> 
-            <td>94444</td>
-            <td>Stop</td>
+          <tr *ngFor="let run of runningJobs">
+            <td><div class="run-id">{{run.runId}}</div></td>
+            <td><div class="job-name">{{run.jobName}}</div></td>
+            <td><div class="start-time">{{formatDateTime(run.state.startTime)}}</div></td>
+            <td><div class="elapsed">{{formatElapsed(run.state.startTime)}}</div></td>
+            <td><div class="job-action">Stop</div></td>
           </tr>
         </tbody>
       </table> 
@@ -62,13 +58,13 @@
       <table class="grid">
         <thead>
           <tr>
-            <th>Schedule Name</th>
+            <th class="schedule-name">Schedule Name</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr>
-          <tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr>
-          <tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr><tr><td>Jill</td></tr>
+          <tr *ngFor="let schedule of runningSchedules">
+            <td><div class="schedule-name">{{schedule}}</div></td>
+          </tr>
         </tbody>
       </table> 
     </div>

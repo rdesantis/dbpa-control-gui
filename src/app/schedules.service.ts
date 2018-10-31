@@ -92,4 +92,15 @@ export class SchedulesService extends DbpaService {
 				catchError(this.handleError<any>(`schedules.rename name=${name} newName=${newName}`))
 	  );
 	}
+
+	/**
+	 * Return a list of the running schedules.
+	 */
+	getRunning(): Observable<string[]> {
+	  const url = `${this.url}/-/running`;
+		return this.http.get<string[]>(url).pipe(
+				tap(_ => this.log(`fetched list of running schedules`)),
+				catchError(this.handleError(`schedules.getRunning`, []))
+	  );
+	}
 }

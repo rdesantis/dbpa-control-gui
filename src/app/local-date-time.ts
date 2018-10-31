@@ -72,6 +72,19 @@ export class LocalDateTime {
         return result;
     }
 
+    public static now(): number[] {
+        const now: Date = new Date();
+        let nowDateTime: number[] = [
+                now.getFullYear(),
+                now.getMonth() + 1,
+                now.getDate(),
+                now.getHours(),
+                now.getMinutes(),
+                now.getSeconds(),
+                now.getMilliseconds()];
+        return nowDateTime;
+    }
+
     private static digits(d: number, i: number): string {
         return ("000" + i).slice(-d);
     }
