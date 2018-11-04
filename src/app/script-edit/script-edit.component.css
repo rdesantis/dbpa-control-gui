@@ -4,6 +4,7 @@
 
 #definition {
     padding: 5px;
+    white-space: pre-wrap;
 }
 
 #validation {
