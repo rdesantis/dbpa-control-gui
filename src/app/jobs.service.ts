@@ -72,7 +72,7 @@ export class JobsService extends DbpaService {
 	  const url = `${this.url}/-/running`;
 		return this.http.get<JobRun[]>(url).pipe(
 				tap(_ => this.log(`fetched list of running jobs`)),
-				catchError(this.handleError(`jobs.getRunning`, []))
+				catchError(this.handleError(`jobs.getRunning`, null))
 	  );
 	}
 

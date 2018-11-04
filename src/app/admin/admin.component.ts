@@ -5,6 +5,7 @@ import { JobRun } from '../job-run';
 import { ScheduleStateWithName } from '../schedule-state-with-name';
 import { SchedulesService } from '../schedules.service';
 import { LocalDateTime } from '../local-date-time';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-admin',
@@ -18,7 +19,8 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private jobsService: JobsService,
-    private schedulesService: SchedulesService
+    private schedulesService: SchedulesService,
+    private serviceService: ServiceService
   ) {}
 
   ngOnInit() {
@@ -58,5 +60,22 @@ export class AdminComponent implements OnInit {
   formatRemaining(endDateTime: number[]): string {
     let startDateTime: number[] = LocalDateTime.now();
     return LocalDateTime.until(startDateTime, endDateTime);
+  }
+
+  kill() {
+    let confirmed: boolean = confirm(
+"Stopping the service will stop any running jobs, " +
+"prevent any other jobs from starting, " +
+"and prevent access to all ManageDbp resources " +
+"(jobs, scripts, schedules). " +
+"The service cannot be restarted here; " +
+"it must be restarted by a system administrator " +
+"with access to the service host computer." + `
+
+Are you sure you want to stop the service?`);
+
+    if (confirmed) {
+      this.serviceService.kill().subscribe(() => {this.runningJobs = null; this.runningSchedulesWithStates = null;});
+    }
   }
 }

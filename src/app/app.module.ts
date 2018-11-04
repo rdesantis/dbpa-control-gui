@@ -22,6 +22,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { JobEditComponent } from './job-edit/job-edit.component';
 import { AdminComponent } from './admin/admin.component';
+import { ServiceService } from './service.service';
 
 @NgModule({
   imports: [
@@ -46,7 +47,7 @@ import { AdminComponent } from './admin/admin.component';
     JobEditComponent,
     AdminComponent
   ],
-  providers: [ MessageService, ScriptsService, SchedulesService, JobsService ],
+  providers: [ MessageService, ScriptsService, SchedulesService, JobsService, ServiceService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

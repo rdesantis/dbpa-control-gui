@@ -5,29 +5,31 @@
   </div>
 
   <div>
-    <label for="service-status">Service Status</label>
-    <input type="text" id="service-status" readonly="true">
-    <button>Stop</button>
+    <label for="service-status">Service status</label>
+    <input type="text" id="service-status" [value]="runningJobs ? 'Running' : 'Not Running'" readonly="true">
+    <button class="actions-button" (click)="kill()">Stop</button>
   </div>
 
+<!--
   <div>
-    <label for="manager-status">Manager Status</label>
+    <label for="manager-status">Manager status</label>
     <input type="text" id="manager-status" readonly="true">
     <button>Start</button>
     <button>Stop</button>
   </div>
 
   <div>
-    <label for="manager-status">Database Schema</label>
+    <label for="manager-status">Database schema</label>
     <input type="text" id="database-schema" readonly="true">
     <button>Create</button>
     <button>Delete</button>
   </div>
+-->
 </div>
 
 <div class="flex-height sequence">
   <div class="stack centered">
-    <div class="fixed-height app-title">Running Jobs ({{runningJobs.length}})</div>
+    <div class="fixed-height app-title">Running Jobs ({{runningJobs ? runningJobs.length : 0}})</div>
     <div class="flex-height">
       <table class="grid">
         <thead>
@@ -53,7 +55,7 @@
   </div>
 
   <div class="stack centered">
-    <div class="fixed-height app-title">Running Schedules ({{runningSchedulesWithStates.length}})</div>
+    <div class="fixed-height app-title">Running Schedules ({{runningSchedulesWithStates ? runningSchedulesWithStates.length : 0}})</div>
     <div class="flex-height">
       <table class="grid">
         <thead>
