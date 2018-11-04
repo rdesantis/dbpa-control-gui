@@ -65,7 +65,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let scheduleWithState of runningSchedulesWithStates">
-            <td><div class="schedule-name">{{scheduleWithState.name}}</div></td>
+            <td><div class="schedule-name"><a routerLink="/schedule-detail/{{scheduleWithState.name}}">{{scheduleWithState.name}}</a></div></td>
             <td><div class="schedule-name">{{formatDateTime(scheduleWithState.state.nextJobTime)}}</div></td>
             <td><div class="schedule-name">{{formatRemaining(scheduleWithState.state.nextJobTime)}}</div></td>
           </tr>
