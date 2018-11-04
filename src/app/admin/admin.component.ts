@@ -42,6 +42,10 @@ export class AdminComponent implements OnInit {
     return LocalDateTime.toDate(a.state.nextJobTime).getTime() - LocalDateTime.toDate(b.state.nextJobTime).getTime();
   }
 
+  formatNow(): string {
+    return LocalDateTime.toString(LocalDateTime.now());
+  }
+
   formatDateTime(dateTime: number[]): string {
     return LocalDateTime.toString(dateTime);
   }

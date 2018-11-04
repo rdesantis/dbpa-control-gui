@@ -1,7 +1,7 @@
 <div class="fixed-height controls">
   <div>
     <label for="status-time">Status as of</label>
-    <input type="text" id="status-time" readonly="true">
+    <input type="text" id="status-time" [value]="formatNow()" readonly="true">
   </div>
 
   <div>
@@ -27,7 +27,7 @@
 
 <div class="flex-height sequence">
   <div class="stack centered">
-    <div class="fixed-height">Running Jobs</div>
+    <div class="fixed-height app-title">Running Jobs</div>
     <div class="flex-height">
       <table class="grid">
         <thead>
@@ -53,7 +53,7 @@
   </div>
 
   <div class="stack centered">
-    <div class="fixed-height">Running Schedules</div>
+    <div class="fixed-height app-title">Running Schedules</div>
     <div class="flex-height">
       <table class="grid">
         <thead>
