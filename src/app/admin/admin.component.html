@@ -27,7 +27,7 @@
 
 <div class="flex-height sequence">
   <div class="stack centered">
-    <div class="fixed-height app-title">Running Jobs</div>
+    <div class="fixed-height app-title">Running Jobs ({{runningJobs.length}})</div>
     <div class="flex-height">
       <table class="grid">
         <thead>
@@ -42,7 +42,7 @@
         <tbody>
           <tr *ngFor="let run of runningJobs">
             <td><div class="run-id">{{run.runId}}</div></td>
-            <td><div class="job-name">{{run.jobName}}</div></td>
+            <td><div class="job-name"><a routerLink="/job-detail/{{run.jobName}}">{{run.jobName}}</a></div></td>
             <td><div class="start-time">{{formatDateTime(run.state.startTime)}}</div></td>
             <td><div class="elapsed">{{formatElapsed(run.state.startTime)}}</div></td>
             <td><div class="job-action">Stop</div></td>
@@ -53,14 +53,14 @@
   </div>
 
   <div class="stack centered">
-    <div class="fixed-height app-title">Running Schedules</div>
+    <div class="fixed-height app-title">Running Schedules ({{runningSchedulesWithStates.length}})</div>
     <div class="flex-height">
       <table class="grid">
         <thead>
           <tr>
             <th class="schedule-name">Schedule Name</th>
-            <th class="schedule-name">Next Run</th>
-            <th class="schedule-name">Time Remaining</th>
+            <th class="schedule-name">Next Run Time</th>
+            <th class="schedule-name">Remaining</th>
           </tr>
         </thead>
         <tbody>
