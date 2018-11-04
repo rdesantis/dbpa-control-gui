@@ -103,4 +103,15 @@ export class SchedulesService extends DbpaService {
 				catchError(this.handleError(`schedules.getRunning`, []))
 	  );
 	}
+
+	/**
+	 * Return the set of running schedules with state details.
+	 */
+	getRunningStates(): Observable<Object> {
+	  const url = `${this.url}/-/running-state`;
+		return this.http.get<Object>(url).pipe(
+			tap(_ => this.log(`fetched list of running schedule states`)),
+			catchError(this.handleError(`schedules.getRunningStates`, {}))
+	  );
+	}
 }

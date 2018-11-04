@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
 import { JobsService }  from '../jobs.service';
 import { JobRun } from '../job-run';
+import { ScheduleStateWithName } from '../schedule-state-with-name';
 import { SchedulesService } from '../schedules.service';
 import { LocalDateTime } from '../local-date-time';
 
@@ -14,7 +14,7 @@ import { LocalDateTime } from '../local-date-time';
 export class AdminComponent implements OnInit {
 
   runningJobs: JobRun[];
-  runningSchedules: string[];
+  runningSchedulesWithStates: ScheduleStateWithName[];
 
   constructor(
     private jobsService: JobsService,
@@ -28,8 +28,13 @@ export class AdminComponent implements OnInit {
   getRunning(): void {
     this.jobsService.getRunning()
         .subscribe(running => this.runningJobs = running);
-    this.schedulesService.getRunning()
-        .subscribe(running => this.runningSchedules = running);
+    this.schedulesService.getRunningStates()
+        .subscribe(map => {
+          this.runningSchedulesWithStates = [];
+          for (let property of Object.keys(map).sort()) {
+            this.runningSchedulesWithStates.push(new ScheduleStateWithName(property, map[property]));
+          }
+        });
   }
 
   formatDateTime(dateTime: number[]): string {
@@ -38,6 +43,11 @@ export class AdminComponent implements OnInit {
 
   formatElapsed(startDateTime: number[]): string {
     let endDateTime: number[] = LocalDateTime.now();
+    return LocalDateTime.until(startDateTime, endDateTime);
+  }
+
+  formatRemaining(endDateTime: number[]): string {
+    let startDateTime: number[] = LocalDateTime.now();
     return LocalDateTime.until(startDateTime, endDateTime);
   }
 }
