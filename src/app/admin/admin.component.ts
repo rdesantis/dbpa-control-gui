@@ -31,10 +31,15 @@ export class AdminComponent implements OnInit {
     this.schedulesService.getRunningStates()
         .subscribe(map => {
           this.runningSchedulesWithStates = [];
-          for (let property of Object.keys(map).sort()) {
+          for (let property in map) {
             this.runningSchedulesWithStates.push(new ScheduleStateWithName(property, map[property]));
           }
+          this.runningSchedulesWithStates.sort(this.compareByNextJobTime);
         });
+  }
+
+  compareByNextJobTime(a: ScheduleStateWithName, b: ScheduleStateWithName): number {
+    return LocalDateTime.toDate(a.state.nextJobTime).getTime() - LocalDateTime.toDate(b.state.nextJobTime).getTime();
   }
 
   formatDateTime(dateTime: number[]): string {
