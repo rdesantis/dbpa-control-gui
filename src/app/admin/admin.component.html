@@ -7,7 +7,7 @@
   <div>
     <label for="service-status">Service status</label>
     <input type="text" id="service-status" [value]="runningJobs ? 'Running' : 'Not Running'" readonly="true">
-    <button class="actions-button" (click)="kill()">Stop</button>
+    <button (click)="kill()">Stop</button>
   </div>
 
 <!--
@@ -47,7 +47,7 @@
             <td><div class="job-name"><a routerLink="/job-detail/{{run.jobName}}">{{run.jobName}}</a></div></td>
             <td><div class="start-time">{{formatDateTime(run.state.startTime)}}</div></td>
             <td><div class="elapsed">{{formatElapsed(run.state.startTime)}}</div></td>
-            <td><div class="job-action">Stop</div></td>
+            <td><div class="job-action"><button (click)="stopJob(run.runId, run.jobName)">Stop</button></div></td>
           </tr>
         </tbody>
       </table> 

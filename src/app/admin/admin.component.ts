@@ -78,4 +78,12 @@ Are you sure you want to stop the service?`);
       this.serviceService.kill().subscribe(() => {this.runningJobs = null; this.runningSchedulesWithStates = null;});
     }
   }
+
+  stopJob(id: number, name: string) {
+    let confirmed: boolean = confirm(`Are you sure you want to stop job "${name}"?`);
+      
+    if (confirmed) {
+      this.jobsService.stop(id).subscribe(() => this.getRunning());
+    }
+  }
 }

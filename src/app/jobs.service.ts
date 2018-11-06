@@ -84,6 +84,14 @@ export class JobsService extends DbpaService {
 	  );
 	}
 
+	stop(id: number): Observable<any> {
+	  const url = `${this.url}/-/running/${id}`;
+	  return this.http.delete<string>(url, DbpaService.httpOptions).pipe(
+				tap(_ => this.log(`stopped job id=${id}`)),
+				catchError(this.handleError<string>(`jobs.stop id=${id}`))
+	  );
+	}
+
 	rename(name: string, newName: string): Observable<any> {
 		const url = `${this.url}/${name}/rename`;
 		return this.http.put(url, newName, DbpaService.httpOptions).pipe(
